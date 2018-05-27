@@ -3,8 +3,8 @@ const router = express.Router();
 let postController = require('../controllers/postController');
 
 /**
- * @api {get} discover/getPosts get all posts
- * @apiSampleRequest http://localhost:5555/api/discover/getPosts
+ * @api {get} post/getPosts get all posts
+ * @apiSampleRequest http://localhost:5555/api/post/getAll
  * @apiName getAll
  * @apiVersion 0.1.0
  * @apiGroup Discover/Post
@@ -20,16 +20,111 @@ let postController = require('../controllers/postController');
  *       "posts": [{...},{...},{...}]
  *     }
  */
-router.get('/getPosts', postController.getPosts);
+router.get('/getAll', postController.getAll);
 
-router.get('/getPostById', postController.getPostById);
+/**
+ * @api {get} /post/getByUser getByUser
+ * @apiName getByUser
+ * @apiVersion 0.1.0
+ * @apiGroup Post
+ *
+ * @apiHeader {String} Authorization authorization token.
+ * @apiHeaderExample {json} Header-Example:
+ *     {
+ *       "Authorization": "Token Value"
+ *     }
+ *
+ * @apiParam {Post} user object
+ * @apiParamExample {json} request-post:
+ *     {
+ *       "_id": "asdewferwf",
+ *       ...
+ *     }
+ *
+ * @apiSuccess {boolean} success http status .
+ * @apiSuccess {boolean} result  http result.
+ *
+ * @apiSuccessExample Success-Response:
+ *     HTTP/1.1 200 OK
+ *     {
+ *       "success": true,
+ *       "result": true
+ *     }
+ */
+router.get('/getByUser', postController.getByUser);
 
-router.get('/getPostByUserId', postController.getPostByUserId);
 
-router.post('/addPost', postController.addPost);
 
-router.post('/deletePost', postController.deletePost);
 
-router.post('/updatePost', postController.updatePost);
+/**
+ * @api {post} post/add add
+ * @apiName add
+ * @apiVersion 0.1.0
+ * @apiGroup Post
+ *
+ *
+ * @apiSuccess {post} success http status .
+ * @apiSuccess {post} result  http result.
+ *
+ * @apiSuccessExample Success-Response:
+ *     HTTP/1.1 200 OK
+ *     {
+*       "success": true,
+*       "result": true
+*     }
+ */
+router.post('/add', postController.add);
 
+
+
+/**
+ * @api {post} post/delete delete
+ * @apiName delete
+ * @apiVersion 0.1.0
+ * @apiGroup Post
+ *
+ *
+ * @apiSuccess {post} success http status .
+ * @apiSuccess {post} result  http result.
+ *
+ * @apiSuccessExample Success-Response:
+ *     HTTP/1.1 200 OK
+ *     {
+*       "success": true,
+*       "result": true
+*     }
+ */
+router.post('/delete', postController.delete);
+
+
+/**
+ * @api {post} post/update
+ * @apiName update
+ * @apiVersion 0.1.0
+ * @apiGroup Post
+ *
+ * @apiHeader {String} Authorization authorization token.
+ * @apiHeaderExample {json} Header-Example:
+ *     {
+ *       "Authorization": "Token Value"
+ *     }
+ *
+ * @apiParam {_id} post  object
+ * @apiParamExample {json} request-body-Example:
+ *     {
+ *       "_id": "asdewferwf",
+ *       ...
+ *     }
+ *
+ * @apiSuccess {boolean} success http status .
+ * @apiSuccess {boolean} result  post result.
+ *
+ * @apiSuccessExample Success-Response:
+ *     HTTP/1.1 200 OK
+ *     {
+ *       "success": true,
+ *       "result": true
+ *     }
+ */
+router.post('/update', postController.update);
 module.exports = router;

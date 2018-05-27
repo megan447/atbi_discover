@@ -1,7 +1,7 @@
 let Post = require('../models/Post');// get our mongoose model
 
 module.exports = {
-    getPosts: function (req, res) {
+    getAll: function (req, res) {
         Post.find({}, function (err, results) {
             if (results) {
                 return res.json({success: true, result: results});
@@ -22,7 +22,7 @@ module.exports = {
         });
     },
 
-    getPostByUserId: function (req, res) {
+    getByUser: function (req, res) {
         let id = req.query._id;
         Post.findOne({owner: id}, function (err, result) {
             if (result) {
@@ -33,7 +33,7 @@ module.exports = {
         });
     },
 
-    addPost: function (req, res) {
+    add: function (req, res) {
         let post = new Post();
         var postData = req.body;
         post.status = 1;
@@ -53,7 +53,7 @@ module.exports = {
         });
     },
 
-    deletePost: function (req, res) {
+    delete: function (req, res) {
         let item = req.body;
         Post.update({'_id': item._id}, {$set: {'status': 0}}, function (err) {
             if (err) {
@@ -64,7 +64,7 @@ module.exports = {
         })
     },
 
-    updatePost: function (req, res) {
+    update: function (req, res) {
         let item = req.body;
         Post.update({'_id': item._id}, {
             $set: {
