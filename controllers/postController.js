@@ -22,6 +22,17 @@ module.exports = {
         });
     },
 
+    getPostByUserId: function (req, res) {
+        let id = req.query._id;
+        Post.findOne({owner: id}, function (err, result) {
+            if (result) {
+                return res.json({success: true, result: result});
+            } else {
+                return res.json({success: false, result: null});
+            }
+        });
+    },
+
     addPost: function (req, res) {
         let post = new Post();
         var postData = req.body;
