@@ -13,7 +13,6 @@ export class HomeComponent implements OnInit,AfterViewInit {
     title = 'home';
 
 
-
     ngOnInit(): void {
     }
 

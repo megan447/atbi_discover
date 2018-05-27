@@ -1,31 +1,33 @@
+
 <!--The content below is only a placeholder and can be replaced.-->
-<div>
-	<h1>
-		Welcome to {{ title }}!
-		<i class="fa fa-bath" id="icon-test" aria-hidden="true"></i>
-	</h1>
+
+<!--<h2><a routerLink="/detail/1" routerLinkActive="active">Link to detail page (id = 1)</a></h2>-->
+
+
+<nav>
+	<ul>
+		<li><a href="./home.html">home</a></li>
+		<li><a href="./detail.html">user</a></li>
+	</ul>
+</nav>
+<div class="logo">分享你的旅行</div>
+<div class="postlist"></div>
+<div class="box">
+
+	<!--<div class="picture">-->
+	<!--<a href=""><img src="https://pbs.twimg.com/media/DU_kAaQUQAAUKBe.jpg" alt=""></a>-->
+	<!--<p>最美的风景1</p>-->
+	<!--<div><a href="">用户名</a></div>-->
+	<!--<button>like</button>-->
+	<!--</div>-->
+	<app-home-card [title]="'test'"></app-home-card>
+	<app-home-card></app-home-card>
+
+	<app-home-card></app-home-card>
+	<app-home-card></app-home-card>
+	<app-home-card></app-home-card>
 </div>
+<footer>
+	<p class="foot">Some information by maker</p>
+</footer>
 
-
-<h2>Here are some links to help you start : </h2>
-<ul>
-	<li>
-		<h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-	</li>
-	<li>
-		<h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a>
-		</h2>
-	</li>
-	<li>
-		<h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-	</li>
-</ul>
-
-
-<h2>Here are some sample links to different page: </h2>
-<ul>
-	<li>
-		<h2><a routerLink="home/detail/1" routerLinkActive="active">Link to detail page (id = 1)</a></h2>
-		<h2><a routerLink="home/detail/2" routerLinkActive="active">Link to detail page (id = 2)</a></h2>
-	</li>
-</ul>
