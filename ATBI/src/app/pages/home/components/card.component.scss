@@ -1,0 +1,13 @@
+.card{
+  display: inline-block;
+  break-inside: avoid;
+  box-sizing: border-box;
+  width: 20vw;
+  margin: 1rem;
+  box-shadow: 5px 5px grey;
+
+  img{
+    width: 20vw;
+    display: block;
+  }
+}

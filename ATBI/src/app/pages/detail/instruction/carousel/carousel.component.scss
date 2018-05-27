@@ -1,0 +1,30 @@
+#myCarousel .list-inline {
+  overflow-x:auto;
+}
+
+#myCarousel .list-inline-item {
+  margin: 2px;
+}
+
+#myCarousel .carousel-indicators {
+  position: static;
+  left: initial;
+  width: auto;
+  margin-left: auto;
+}
+
+#myCarousel .carousel-indicators > li {
+  width: initial;
+  height: initial;
+  text-indent: initial;
+}
+#myCarousel .img-fluid {
+
+}
+#myCarousel .carousel-indicators > li.active img {
+  opacity: 0.8;
+  border: 2px solid orange;
+}
+#myCarousel .carousel-indicators img:hover {
+  cursor: pointer;
+}

@@ -1,0 +1,35 @@
+<div class="container-fluid">
+    <div class="well">
+        <div style="font-size: small">
+            <button class="btn btn-transparent" (click)="addLike()">
+                <i [ngClass]="likeState ? 'fa fa-heart' : 'fa fa-heart-o'" aria-hidden="true"></i>
+            </button>
+            {{likeNumber}}
+            <button class="btn btn-transparent" (click)="isCommentHidden = !isCommentHidden">
+                <i class="fa fa-commenting-o" aria-hidden="true"></i>
+            </button>
+            {{commentNumber}}
+        </div>
+        <div [hidden]="isCommentHidden">
+            <div>
+                <textarea [(ngModel)]="newComment"></textarea>
+            </div>
+            <div>
+                <button class="btn" (click)="addComment()" style="font-size: x-small" >Submit</button>
+            </div>
+        </div>
+    <header> <i class="far fa-hand-point-right"></i><strong>笔记评论</strong></header>
+    <div *ngFor="let comment of comments" id="pinglun">
+        <div class="row" style="width: 100%">
+            <div class="col-2">
+                <img src="http://placehold.it/200x150" class="img-fluid" alt="">
+            </div>
+            <div class="col" style="font-size: x-small">
+                <div class="row">{{comment.user}}</div>
+                <div class="row" style="font-size: x-small">{{comment.timeStamp}}</div>
+                <div class="row">{{comment.content}}</div>
+                <div class="row" style="background-color: #eee; margin-bottom: 10px">{{comment.author}}（作者）：{{comment.authorReply}}</div>
+            </div>
+        </div>
+    </div>
+</div>

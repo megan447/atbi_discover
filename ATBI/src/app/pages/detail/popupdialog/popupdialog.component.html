@@ -1,0 +1,38 @@
+<!--<button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear">-->
+  <!--{{!isLinear ? 'Enable linear mode' : 'Disable linear mode'}}-->
+<!--</button>-->
+<form (ngSubmit)="onSubmit(f)" #f="ngForm" >
+<mat-horizontal-stepper #stepper>
+  <mat-step>
+      <ng-template matStepLabel>Write your article</ng-template>
+      <!--<mat-form-field>-->
+        <!--<textarea-->
+                <!--rows="4"-->
+                <!--cols="40"-->
+                <!--matInput-->
+                <!--placeholder="Share your colorful life"-->
+                <!--ngModel-->
+                <!--name="article"></textarea>-->
+      <!--</mat-form-field>-->
+      <app-ngx-editor [placeholder]="'Enter text here...'" [spellcheck]="true" name="article">
+      </app-ngx-editor>
+      <div>
+        <button class="btn btn-success" matStepperNext type="button">Next</button>
+      </div>
+  </mat-step>
+  <mat-step>
+      <ng-template matStepLabel>Upload Pictures</ng-template>
+        <!--<input  matInput-->
+                <!--placeholder="Address"-->
+                <!--required-->
+                <!--ngModel-->
+                <!--name="picture">-->
+          <image-upload></image-upload>
+      <div>
+        <button mat-button matStepperPrevious class="btn btn-warning" type="button">Back</button>
+        <button mat-button matStepperNext class="btn btn-success" type="submit">Submit</button>
+      </div>
+  </mat-step>
+</mat-horizontal-stepper>
+</form>
+
