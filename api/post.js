@@ -3,7 +3,7 @@ const router = express.Router();
 let postController = require('../controllers/postController');
 
 /**
- * @api {get} post/getPosts get all posts
+ * @api {get} post/getAll get all posts
  * @apiSampleRequest http://localhost:5555/api/post/getAll
  * @apiName getAll
  * @apiVersion 0.1.0
@@ -53,7 +53,36 @@ router.get('/getAll', postController.getAll);
  */
 router.get('/getByUser', postController.getByUser);
 
-
+/**
+ * @api {get} /post/getById getById
+ * @apiName getById
+ * @apiVersion 0.1.0
+ * @apiGroup Post
+ *
+ * @apiHeader {String} Authorization authorization token.
+ * @apiHeaderExample {json} Header-Example:
+ *     {
+ *       "Authorization": "Token Value"
+ *     }
+ *
+ * @apiParam {Post} user object
+ * @apiParamExample {json} request-post:
+ *     {
+ *       "_id": "asdewferwf",
+ *       ...
+ *     }
+ *
+ * @apiSuccess {boolean} success http status .
+ * @apiSuccess {boolean} result  http result.
+ *
+ * @apiSuccessExample Success-Response:
+ *     HTTP/1.1 200 OK
+ *     {
+ *       "success": true,
+ *       "result": true
+ *     }
+ */
+router.get('/getById', postController.getById);
 
 
 /**

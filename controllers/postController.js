@@ -11,7 +11,7 @@ module.exports = {
         });
     },
 
-    getPostById: function (req, res) {
+    getById: function (req, res) {
         let id = req.query._id;
         Post.findOne({_id: id}, function (err, result) {
             if (result) {
@@ -24,7 +24,7 @@ module.exports = {
 
     getByUser: function (req, res) {
         let id = req.query._id;
-        Post.findOne({owner: id}, function (err, result) {
+        Post.find({owner: id}, function (err, result) {
             if (result) {
                 return res.json({success: true, result: result});
             } else {
