@@ -1,16 +1,19 @@
 <div class="container-fluid">
-	<div class="row">
-		<div class="col-md-2"></div>
-		<div class="col-md-6">
-			<app-instruction></app-instruction>
-		</div>
-		<div class="col-md-4">
-			<app-detail-profile></app-detail-profile>
-		</div>
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-6">
+            <app-instruction></app-instruction>
+        </div>
+        <div class="col-md-4">
+            <app-detail-profile></app-detail-profile>
+        </div>
 
-	</div>
-	<div class="row">
-		<div class="col-md-2"></div>
-		<div class="col-md-5"><app-comments></app-comments></div>
-	</div>
+    </div>
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-5">
+            <app-comment-component *ngIf="post" [object_id]="post?._id"
+                                   [owner]="post?.owner"></app-comment-component>
+        </div>
+    </div>
 </div>

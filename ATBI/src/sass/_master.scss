@@ -1,0 +1,241 @@
+$atbi_orange: #a83b1f;
+$atbi_light_orange: #ed6a5a;
+
+$atbi_lighter_green: #bde5f1;
+$atbi_light_green: #5bc0de;
+$atbi_medium_green: #17a2b8;
+$atbi_dark_green: #138496;
+
+$atbi_danger_red: #f5593d;
+$atbi_danger_hover_red: #f33816;
+
+$atbi_medium_blue: #51bcda;
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !important;
+  font-size: .875em;
+  line-height: 1.6em;
+  border-top: 2px solid;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 400;
+}
+
+/* Pagination global css */
+.pagination {
+  max-width: 400px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+
+  .page-item.active .page-link {
+    z-index: 1;
+    color: #fff;
+    background-color: $atbi_light_orange;
+    border-color: $atbi_light_orange;
+  }
+
+  .page-link {
+    color: $atbi_dark_green;
+  }
+}
+
+.btn-link-green {
+  border-color: transparent !important;
+  padding: 7px 18px;
+  font-size: 12px;
+  background-color: transparent;
+  color: $atbi_medium_blue !important;
+  text-transform: uppercase;
+
+  &:hover {
+    color: $atbi_dark_green !important;
+  }
+}
+
+.btn-link-orange {
+  border-color: transparent !important;
+  padding: 7px 18px;
+  font-size: 12px;
+  background-color: transparent;
+  color: $atbi_light_orange !important;
+  text-transform: uppercase;
+
+  &:hover {
+    color: $atbi_orange !important;
+  }
+}
+
+.btn-no-frame {
+  background: none;
+  padding: 0;
+  border: none;
+  box-shadow: none;
+  border-radius: 0;
+}
+
+.atbi-btn-small {
+  background: $atbi_orange;
+  color: #FFF;
+  font-size: 14px;
+  border-radius: 12px;
+  &.mat-button {
+    background: $atbi_orange;
+    color: #FFF;
+    font-size: 14px;
+    border-radius: 12px;
+    &:hover {
+      background-color: #fff;
+      color: $atbi_orange;
+      border: 1px solid #a83b1f;
+    }
+  }
+}
+
+.atbi-btn-large {
+  font-size: 1em;
+  border-radius: 30px;
+  padding: 10px 48px;
+  box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.35), 0 7px 10px -5px rgba(168, 59, 31, 0.4);
+  background: linear-gradient(60deg, $atbi_light_orange, #C53E2F);
+  font-weight: 400;
+  color: #fff;
+  cursor: pointer;
+}
+
+.atbi-btn-normal {
+  background: $atbi_orange;
+  color: #FFF;
+  font-size: 14px;
+  position: relative;
+  @include border-radius(3px);
+
+  &.mat-raised-button {
+    background-color: #fff;
+    color: $atbi_orange;
+    border: 1px solid $atbi_orange;
+    span.mat-button-wrapper {
+      position: relative;
+
+      &:before,
+      &:after {
+        content: '';
+        display: block;
+        position: absolute;
+        height: 1px;
+        width: 0;
+        bottom: -3px;
+      }
+      &:before {
+        transition: width 0s ease, background .4s ease;
+        left: 0;
+        right: 0;
+      }
+      &:after {
+        right: 0;
+        background: $atbi_orange;
+        transition: width .4s ease;
+      }
+      &:hover {
+        color: $atbi_orange;
+        &:before {
+          width: 100%;
+          background: $atbi_orange;
+          transition: width .4s ease;
+        }
+        &:after {
+          width: 100%;
+          background: 0 0;
+          transition: all 0s ease;
+        }
+      }
+    }
+  }
+}
+
+.atbi-btn-green {
+  background: #fff;
+  color: #17a2b8;
+  font-size: 14px;
+  @include border-radius(3px);
+  &.mat-raised-button {
+    @include border-radius(3px);
+    background-color: #fff;
+    color: #17a2b8;
+    border: 1px solid #17a2b8;
+    &:hover {
+      background: #17a2b8;
+      color: #FFF;
+      border: 1px solid #17a2b8;
+    }
+  }
+  .fa {
+    position: relative;
+    margin-right: 10px;
+    top: -2px;
+  }
+}
+
+.atbi-btn-danger {
+  background: $atbi_danger_red;
+  color: #fff;
+  border: 1px solid $atbi_danger_red;
+  &.mat-raised-button {
+    background-color: #fff;
+    color: $atbi_danger_red;
+    border: 1px solid $atbi_danger_red;
+    span.mat-button-wrapper {
+      position: relative;
+
+      &:before,
+      &:after {
+        content: '';
+        display: block;
+        position: absolute;
+        height: 1px;
+        width: 0;
+        bottom: -3px;
+      }
+      &:before {
+        transition: width 0s ease, background .4s ease;
+        left: 0;
+        right: 0;
+      }
+      &:after {
+        right: 0;
+        background: $atbi_danger_red;
+        transition: width .4s ease;
+      }
+      &:hover {
+        color: $atbi_danger_red;
+        &:before {
+          width: 100%;
+          background: $atbi_danger_red;
+          transition: width .4s ease;
+        }
+        &:after {
+          width: 100%;
+          background: 0 0;
+          transition: all 0s ease;
+        }
+      }
+    }
+  }
+}
+
+.atbi-icon-small {
+  width: 33px;
+  height: 33px;
+  color: white;
+  @include border-radius(100%);
+  box-sizing: border-box;
+  text-align: center;
+  background: #a83b1f;
+  background-image: linear-gradient(to bottom, #a83b1f 0, #ed6a5a 100%);
+  box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.01s ease-in;
+  transition-property: top;
+  cursor: pointer;
+}

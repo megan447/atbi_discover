@@ -23,6 +23,10 @@ import {HttpHandler, HttpClient} from "@angular/common/http";
 import {HttpClientModule} from '@angular/common/http'
 import {ImageUploadModule} from 'angular2-image-upload';
 import {CardComponent} from "./pages/home/components/card.component";
+import {SharedComponentModule} from "./sharedComponents/sharedComponentsModule";
+import {AuthenticationService} from "./globalServices/authentication.service";
+import {NgbPaginationConfig} from "@ng-bootstrap/ng-bootstrap";
+import {APP_CONFIG, AppConfig} from "./app.config";
 
 
 @NgModule({
@@ -41,6 +45,7 @@ import {CardComponent} from "./pages/home/components/card.component";
     imports: [
         BrowserModule,
         CommonModule,
+        SharedComponentModule,
         BrowserAnimationsModule,
         AppRoutingModule,
         NgMaterialModule,
@@ -57,7 +62,13 @@ import {CardComponent} from "./pages/home/components/card.component";
     entryComponents: [
         PopupdialogComponent
     ],
-    providers: [HttpClient],
+    providers: [
+        HttpClient, AuthenticationService, NgbPaginationConfig,
+        {
+            provide: APP_CONFIG,
+            useValue: AppConfig
+        },
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule {

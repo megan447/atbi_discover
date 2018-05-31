@@ -1,0 +1,107 @@
+$atbi_orange: #a83b1f;
+$atbi_light_orange: #ed6a5a;
+
+$atbi_lighter_green: #bde5f1;
+$atbi_light_green: #5bc0de;
+$atbi_medium_green: #17a2b8;
+$atbi_dark_green: #138496;
+
+$atbi_danger_red: #f5593d;
+$atbi_danger_hover_red: #f33816;
+
+$atbi_medium_blue: #51bcda;
+
+.comment-body {
+  .text-muted {
+    font-size: 0.9em;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    color: #868e96 !important;
+  }
+
+  .title.text-center {
+    margin: 30px auto;
+  }
+
+  .comment-content {
+    color: #888;
+    font-size: 1.104em;
+    line-height: 1.61em;
+    min-height: 60px;
+    max-height: 300px;
+    overflow: auto;
+  }
+
+  .comment-footer {
+    text-align: right;
+
+    .fa-paper-plane-o {
+      margin-right: 5px;
+    }
+  }
+
+  .media-post {
+    border-bottom: 1px solid hsla(39, 9%, 61%, .22);
+    padding-bottom: 30px;
+    margin-top: 30px;
+
+    .author {
+      padding: 10px;
+    }
+    .media-footer {
+      text-align: right;
+    }
+  }
+  .custom-comment-input-field {
+    width: 100%;
+  }
+  .media .media {
+    margin-top: 30px;
+  }
+  .media-area .media:last-child {
+    border: 0;
+  }
+  .media {
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+
+    &.comment-item {
+      margin-top: 30px;
+    }
+
+    .media-heading {
+      color: #403d39;
+      display: inline-block;
+      font-weight: 400;
+      margin-bottom: 10px;
+      margin-top: 5px;
+    }
+    .avatar {
+      margin: 0 15px 0 auto;
+      width: 64px;
+      height: 64px;
+
+      img {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        object-fit: cover;
+        box-shadow: 0 4px 24px 0 rgba(0, 0, 0, 0.3)
+      }
+
+      span {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        object-fit: cover;
+        box-shadow: 0 4px 24px 0 rgba(0, 0, 0, 0.3);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 30px;
+        color: #fff;
+        background: $atbi_medium_blue;
+      }
+    }
+  }
+}

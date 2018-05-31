@@ -1,0 +1,126 @@
+<div class="comment-body container">
+    <div class="row">
+        <div class="col-md-10 m-auto">
+            <div class="media media-post">
+                <a class="pull-left author" href="#pablo">
+                    <div class="avatar">
+                        <!--Todo: adjust this img url into real data from current user-->
+                        <img alt="64x64" class="media-object img-raised" src="assets/images/detail/profile-of-girl.jpg">
+                    </div>
+                </a>
+                <div class="media-body">
+                    <form class="comment-post-form" [formGroup]="commentPostForm"
+                          (keydown.enter)="$event.preventDefault()">
+                        <mat-form-field class="custom-comment-input-field">
+                                    <textarea matInput placeholder="Write you nice comment here..."
+                                              formControlName="post_content"
+                                              rows="4" maxlength="256"></textarea>
+                            <mat-hint align="end">
+                                {{commentPostForm.controls['post_content'].value?.length}} / 256
+                            </mat-hint>
+                        </mat-form-field>
+                        <div class="media-footer">
+                            <button mat-raised-button class="atbi-btn-green" (click)="addComment()">
+                                <i class="fa fa-pencil" aria-hidden="true"></i>Comment
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="media-area">
+                <h3 class="title text-center">{{countComments}} Comments</h3>
+                <div class="media comment-item" *ngFor="let comment of nPHelper.pageItems">
+                    <a class="pull-left">
+                        <div class="avatar">
+                            <img *ngIf="comment.fromUser.imageUrl;else showInitial" class="media-object img-raised"
+                                 src="{{ comment.fromUser.imageUrl }}">
+                            <ng-template #showInitial>
+                                <span>{{ comment.fromUser.username.charAt(0) }}</span>
+                            </ng-template>
+                        </div>
+                    </a>
+                    <div class="media-body">
+                        <h5 class="media-heading">
+                            {{comment.fromUser.username}}
+                        </h5>
+                        <div class="pull-right">
+                            <h6 class="text-muted">{{ comment.date | date:'medium'}}</h6>
+                            <a class="btn btn-info-custom btn-link-green pull-right" data-toggle="collapse"
+                               href="#{{comment._id}}" aria-expanded="false">
+                                <i class="fa fa-reply" aria-hidden="true"></i>
+                                Reply
+                            </a>
+                        </div>
+                        <p class="comment-content">
+                            {{comment.content}}
+                        </p>
+                        <div class="collapse" id={{comment._id}}>
+                            <div class="comment-form">
+                                <div class="comment-input">
+                                    <div class="input-field">
+                                        <textarea name="content" class="form-control comment-reply-input"
+                                                  #replySubValue rows="4" maxlength="256"
+                                                  placeholder="@{{comment.fromUser.username}}"></textarea>
+                                    </div>
+                                </div>
+                                <div class="comment-footer">
+                                    <a class="btn btn-info-custom btn-link-orange"
+                                       (click)="replyComment(comment,replySubValue.value)">
+                                        <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
+                                        Send
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="media-children" *ngIf="comment.children.length>0">
+                            <div class="media" *ngFor="let commentChild of comment.children">
+                                <a class="pull-left">
+                                    <div class="avatar">
+                                        <img *ngIf="commentChild.fromUser.imageUrl;else showInitial"
+                                             class="media-object img-raised"
+                                             src="{{ commentChild.fromUser.imageUrl }}">
+                                        <ng-template #showInitial>
+                                            <span>{{ commentChild.fromUser?.username?.charAt(0) }}</span>
+                                        </ng-template>
+                                    </div>
+                                </a>
+                                <div class="media-body">
+                                    <h5 class="media-heading">{{commentChild.fromUser.username}}</h5>
+                                    <div class="pull-right">
+                                        <h6 class="text-muted">{{ commentChild.date | date:'medium'}}</h6>
+                                        <a class="btn btn-info-custom btn-link-green pull-right" data-toggle="collapse"
+                                           href="#{{commentChild._id}}"><i class="fa fa-reply"></i> Reply</a>
+                                    </div>
+                                    <p class="comment-content">{{commentChild.content}}</p>
+
+                                    <div class="collapse" id={{commentChild._id}}>
+                                        <div class="comment-form">
+                                            <div class="comment-input">
+                                                <div class="input-field">
+                                                    <textarea name="content" class="form-control comment-reply-input"
+                                                              #replySubValue rows="4" maxlength="256"
+                                                              placeholder="@{{commentChild.fromUser.username}}"></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="comment-footer">
+                                                <a class="btn btn-info-custom btn-link-orange"
+                                                   (click)="replyComment(comment,replySubValue.value)">
+                                                    <!--make sure you reply only under parent comment-->
+                                                    <i class="fa fa-paper-plane-o" aria-hidden="true"></i>Send
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <ngb-pagination [pageSize]="nPHelper.pageSize"
+                                [collectionSize]="nPHelper.collectionSize"
+                                [(page)]="nPHelper.page" (pageChange)="nPHelper.pageChange($event)"
+                                aria-label="Default pagination"></ngb-pagination>
+            </div>
+        </div>
+    </div>
+</div>
