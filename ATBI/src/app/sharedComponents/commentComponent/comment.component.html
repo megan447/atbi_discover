@@ -5,7 +5,7 @@
                 <a class="pull-left author" href="#pablo">
                     <div class="avatar">
                         <!--Todo: adjust this img url into real data from current user-->
-                        <img alt="64x64" class="media-object img-raised" src="{{owner.imageUrl}}">
+                        <img alt="64x64" class="media-object img-raised" src="{{urlPrefix}}{{owner.imageUrl}}">
                     </div>
                 </a>
                 <div class="media-body">
@@ -33,7 +33,7 @@
                     <a class="pull-left">
                         <div class="avatar">
                             <img *ngIf="comment.fromUser.imageUrl;else showInitial" class="media-object img-raised"
-                                 src="{{ comment.fromUser.imageUrl }}">
+                                 src="{{urlPrefix}}{{ comment.fromUser.imageUrl }}">
                             <ng-template #showInitial>
                                 <span>{{ comment.fromUser.username.charAt(0) }}</span>
                             </ng-template>
@@ -72,13 +72,13 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="media-children" *ngIf="comment.children.length>0">
+                        <div class="media-children" *ngIf="comment.children">
                             <div class="media" *ngFor="let commentChild of comment.children">
                                 <a class="pull-left">
                                     <div class="avatar">
                                         <img *ngIf="commentChild.fromUser.imageUrl;else showInitial"
                                              class="media-object img-raised"
-                                             src="{{ commentChild.fromUser.imageUrl }}">
+                                             src="{{urlPrefix}}{{ commentChild.fromUser.imageUrl }}">
                                         <ng-template #showInitial>
                                             <span>{{ commentChild.fromUser?.username?.charAt(0) }}</span>
                                         </ng-template>

@@ -1,23 +1,26 @@
-// grab the things we need
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+// get an instance of mongoose and mongoose.Schema
+let mongoose = require('mongoose');
+let Schema = mongoose.Schema;
 
-// create a schema
-var commentSchema = new Schema({
-    date: Date,
+let commentSchema = Schema({
+    // object id, can be article, post, blog, businessman
     object_id: String,
-    topic_id: String,
-    isTopic: Boolean,
+    // comment content text
     content: String,
-    status: Number,
-    like: Number,
+    // Mixed parent, can be [comment objects] or [comment _id(s)} or null - 1st level
+    parent: {type: Schema.Types.ObjectId, ref: 'Comment'},
+    // Mixed children, can be [comment objects] or [comment _id(s)}
+    children: [{type: Schema.Types.ObjectId, ref: 'Comment'}],
+    // For notifications && poster preview
     fromUser: {type: Schema.Types.ObjectId, ref: 'User'},
-    toUser: {type: Schema.Types.ObjectId, ref: 'User'}
+    toUser: {type: Schema.Types.ObjectId, ref: 'User'},
+    // Generated
+    date: Date,
+    // For deleted
+    status: Number,
+    // comment likes
+    like: Number,
 });
 
-// the schema is useless so far
-// we need to create a model using it
-var post = mongoose.model('Comment', commentSchema);
 
-// make this available to our users in our Node applications
-module.exports = post;
+module.exports = mongoose.model("Comment", commentSchema);

@@ -1,9 +1,9 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Inject, Input, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {User} from "../../models/User";
 import {CommentService} from "./comment.service";
-import {NotificationSetting} from "../../app.config";
+import {APP_CONFIG, IAppConfig, NotificationSetting} from "../../app.config";
 import {PaginationHelper} from "../../helpers/pagination.helper";
 import {Comment} from "../../models/Comment";
 import {AuthenticationService} from "../../globalServices/authentication.service";
@@ -31,15 +31,16 @@ export class CommentComponent implements OnInit {
 
     public nPHelper: PaginationHelper;
 
-    constructor(private route: ActivatedRoute,
+    urlPrefix: string;
+
+    constructor(@Inject(APP_CONFIG) private config: IAppConfig,
+                private route: ActivatedRoute,
                 private commentService: CommentService,
                 private fb: FormBuilder,
-                private authService: AuthenticationService
-                // private _notificationsService: NotificationsService,
-                // private socketService: NotificationService,
-    ) {
+                private authService: AuthenticationService) {
         this.nPHelper = new PaginationHelper();
         this.comments = [];
+        this.urlPrefix = this.config.cloudPrefix;
     }
 
     // notification setting.
@@ -48,11 +49,7 @@ export class CommentComponent implements OnInit {
 
     ngOnInit() {
         this.createForm();
-        // this.currentUser = this.authService.getCurrentUser();
-        // if (this.currentUser) {
-        //     this.currentUserImg = this.currentUser.imageUrl ? this.currentUser.imageUrl : '/assets/images/user/businessman.png';
-        // }
-
+        this.currentUser = this.authService.getCurrentUser(true);
         this.loadComments();
     }
 
@@ -146,6 +143,7 @@ export class CommentComponent implements OnInit {
                         if (comment.parent) { // This belongs to reply.
                             this.comments.map((item) => {
                                 if (item._id === comment.parent._id) {
+                                    item.children = item.children ? item.children : [];
                                     item.children.push(newComment);
                                     return; // break scan
                                 }

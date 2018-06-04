@@ -21,7 +21,7 @@ export class DetailComponent implements OnInit {
 
     ngOnInit(): void {
         this.post = new Post();
-        this.post._id = '123456789';  // test
+        this.post._id = '5aebbdd1356c600be52f6146';  // test
         this.post.owner = this.authService.getCurrentUser();
         this.currentUser = this.authService.getCurrentUser();
     }

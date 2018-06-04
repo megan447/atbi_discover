@@ -35,7 +35,15 @@ export class AuthenticationService {
         }
     }
 
-    getCurrentUser(): User {
+    getCurrentUser(unsetPrefix = false): User {
+        if (!unsetPrefix) {
+            return this.user;
+        }
+
+        const token = localStorage.getItem('token');
+        const tokenHelper = new JwtHelperService();
+        let tokenParsed = tokenHelper.decodeToken(token);
+        this.user.imageUrl = tokenParsed.imageUrl;
         return this.user;
     }
 
