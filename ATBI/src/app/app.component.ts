@@ -35,7 +35,6 @@ export class AppComponent implements AfterViewInit, OnInit {
             {value: '5b149a6af9277a06de5034b2', viewValue: 'ZZhe'},
         ];
         this.currentUser = this.authenticationService.getCurrentUser();
-        console.log(this.currentUser.imageUrl);
     }
 
     ngAfterViewInit(): void {
@@ -49,7 +48,6 @@ export class AppComponent implements AfterViewInit, OnInit {
                 response => {
                     if (response.success) {
                         this.currentUser = this.authenticationService.login(<User>response.result, response.token);
-                        console.log(this.currentUser.imageUrl);
                     }
                 },
                 error => {

@@ -26,7 +26,7 @@ export class AuthenticationService {
             const tokenHelper = new JwtHelperService();
             let tokenParsed = tokenHelper.decodeToken(token);
             this.user.username = tokenParsed._doc.username;
-            this.user.imageUrl = this.config.cloudPrefix + tokenParsed._doc.imageUrl;
+            this.user.imageUrl = this.config.cloudPrefix + tokenParsed.imageUrl;
             this.user._id = tokenParsed._doc._id;
             this.logged();
         } else {

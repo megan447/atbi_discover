@@ -7,10 +7,11 @@ module.exports = {
         let id = req.body._id;
         User.findOne({_id: id}, function (err, result) {
             if (result) {
+                let userObj = JSON.parse(JSON.stringify(result));
                 let user = new User();
                 user._id = result._id;
                 user.username = result.username;
-                user.imageUrl = result.avatar;
+                user.imageUrl = userObj.imageUrl;
 
                 let token = jwt.sign(user, config.secret(), {
                     expiresIn: 60 * 60// expires in seconds

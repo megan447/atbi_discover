@@ -15,5 +15,18 @@
     .nick-name {
       margin-left: 5px;
     }
+
+    .user-profile-pic {
+      display: inline-block;
+      max-width: 40px;
+      max-height: 40px;
+      .user-avatar {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        border-radius: 3px;
+        margin-left: 12px;
+      }
+    }
   }
 }
