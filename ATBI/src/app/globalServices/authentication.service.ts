@@ -4,11 +4,14 @@ import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
 import 'rxjs/add/operator/map';
 import {APP_CONFIG, IAppConfig} from "../app.config";
 import {User} from "../models/User";
+import {BehaviorSubject} from "rxjs/BehaviorSubject";
+import {JwtHelperService} from '@auth0/angular-jwt';
 
 // this is a global service which provided in app.module
 @Injectable()
 export class AuthenticationService {
 
+    private isLoginSubject = new BehaviorSubject<boolean>(this.hasToken());
     private user: User;
 
     constructor(@Inject(APP_CONFIG) private config: IAppConfig,
@@ -17,19 +20,31 @@ export class AuthenticationService {
     }
 
     initCurrentUser() {
-        this.user = new User();
-        this.user.username = 'Mike Test';
-        this.user.imageUrl = 'http://endlesstheme.com/Endless1.5.1/img/user2.jpg';
+        const token = localStorage.getItem('token');
+        if (token) {
+            this.user = new User();
+            const tokenHelper = new JwtHelperService();
+            let tokenParsed = tokenHelper.decodeToken(token);
+            this.user.username = tokenParsed._doc.username;
+            this.user.imageUrl = this.config.cloudPrefix + tokenParsed._doc.imageUrl;
+            this.user._id = tokenParsed._doc._id;
+            this.logged();
+        } else {
+            this.user = null;
+            this.isLoginSubject.next(false);
+        }
     }
 
     getCurrentUser(): User {
         return this.user;
     }
 
-    private getUser(): Observable<any> {
-        return this.http.post(this.config.apiEndpoint + '/auth/getUser',
-            {},
-            {headers: this.jwt()});
+    /**
+     *
+     * @returns {Observable<T>}
+     */
+    isLoggedIn(): Observable<boolean> {
+        return this.isLoginSubject.asObservable();
     }
 
     /**
@@ -37,7 +52,37 @@ export class AuthenticationService {
      * @returns {boolean}
      */
     private hasToken(): boolean {
-        return !!localStorage.getItem('token');
+        return !localStorage.getItem('token');
+    }
+
+    fakeUserLogin(_id: string): Observable<any> {
+        const json = JSON.stringify({_id: _id});
+        return this.http.post(this.config.apiEndpoint + '/auth/fakeLogin', {_id: _id},
+            {
+                headers: this.jwt()
+            });
+    }
+
+    login(user: User, token: string) {
+        localStorage.setItem('token', token);
+        this.user = user;
+        this.user.imageUrl = this.config.cloudPrefix + user.imageUrl;
+        this.logged();
+        return this.user;
+    }
+
+    logout() {
+        // remove user from local storage to log user out
+        this.isLoginSubject.next(false);
+        localStorage.removeItem('token');
+        this.user = null;
+    }
+
+    /**
+     *  Login the user then tell all the subscribers about the new status
+     */
+    logged(): void {
+        this.isLoginSubject.next(true);
     }
 
     private handleError(error: HttpErrorResponse) {
@@ -57,7 +102,7 @@ export class AuthenticationService {
 
     private jwt() {
         // create authorization header with jwt token
-        const token = localStorage.getItem('token');
+        const token = localStorage.getItem('token') || '';
         if (token) {
             return new HttpHeaders().set('Authorization', token);
         }

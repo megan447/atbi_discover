@@ -11,7 +11,7 @@ var compression = require('compression')
 var config = require('./config/config'); // get our config file
 var cors = require('./config/cors');//get Cross-Origin Resource Sharing (CORS) config
 
-
+app.use(cors);// set CORS
 
 // use body parser so we can get info from POST and/or URL parameters
 app.use(bodyParser.urlencoded({extended: false}));

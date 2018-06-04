@@ -1,2 +1,31 @@
+<div class="nav-bar">
+    <div class="container">
+        <div class="btn-group">
+            <div class="logged-btn-group" *ngIf="!isLogged;else showLogged">
+                <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
+                    Login as
+                </button>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" *ngFor="let user of fakeUserArr"
+                       (click)="fakeLogin(user.value)">{{user.viewValue}}</a>
+                </div>
+            </div>
+            <ng-template #showLogged>
+                <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
+                    Hi <span class="nick-name">{{currentUser?.username}}</span>
+                </button>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" (click)="logout()">
+                        logout
+                    </a>
+                </div>
+            </ng-template>
+        </div>
+    </div>
+
+
+</div>
 <router-outlet></router-outlet>
 

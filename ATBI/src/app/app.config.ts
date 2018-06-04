@@ -5,11 +5,13 @@ export let APP_CONFIG = new InjectionToken("app.config");
 export interface IAppConfig {
     apiEndpoint: string;
     serverPoint: string;
+    cloudPrefix: string;
 }
 
 export const AppConfig: IAppConfig = {
     apiEndpoint: "http://localhost:3000/api",
     serverPoint: "http://localhost:3000",
+    cloudPrefix: "http://res.cloudinary.com/dx55oi3py/image/upload/"
 };
 
 export class AgmConfig {
