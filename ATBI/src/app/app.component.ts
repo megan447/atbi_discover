@@ -1,6 +1,7 @@
-import {Component, AfterViewInit, OnInit} from '@angular/core';
+import {Component, Inject, AfterViewInit, OnInit} from '@angular/core';
 import {AuthenticationService} from "./globalServices/authentication.service";
 import {User} from "./models/User";
+import {APP_CONFIG, IAppConfig} from "./app.config";
 
 declare var $: any;
 
@@ -17,11 +18,13 @@ export class AppComponent implements AfterViewInit, OnInit {
 
     isLogged: boolean;
     currentUser: User;
+    urlPrefix: string;
 
-    constructor(private authenticationService: AuthenticationService) {
+    constructor(@Inject(APP_CONFIG) private config: IAppConfig, private authenticationService: AuthenticationService) {
         this.authenticationService.isLoggedIn().subscribe((value: boolean) => {
             this.isLogged = value;
         });
+        this.urlPrefix = this.config.cloudPrefix;
     }
 
 

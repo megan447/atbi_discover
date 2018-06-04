@@ -32,6 +32,7 @@ export class CommentComponent implements OnInit {
     public nPHelper: PaginationHelper;
 
     urlPrefix: string;
+    userAvatar: string;
 
     constructor(@Inject(APP_CONFIG) private config: IAppConfig,
                 private route: ActivatedRoute,
@@ -49,7 +50,7 @@ export class CommentComponent implements OnInit {
 
     ngOnInit() {
         this.createForm();
-        this.currentUser = this.authService.getCurrentUser(true);
+        this.currentUser = this.authService.getCurrentUser();
         this.loadComments();
     }
 
@@ -134,12 +135,14 @@ export class CommentComponent implements OnInit {
      * @param {Comment} comment
      */
     private postComment(comment: Comment) {
+        this.userAvatar = this.authService.getUserAvatar();
         this.commentService.addComment(comment)
             .subscribe(
                 response => {
                     if (response.success && response.result) {
                         const newComment = <Comment>response.result;
                         newComment.fromUser = this.currentUser;
+                        // newComment.fromUser.imageUrl = this.userAvatar;
                         if (comment.parent) { // This belongs to reply.
                             this.comments.map((item) => {
                                 if (item._id === comment.parent._id) {

@@ -26,7 +26,7 @@ export class AuthenticationService {
             const tokenHelper = new JwtHelperService();
             let tokenParsed = tokenHelper.decodeToken(token);
             this.user.username = tokenParsed._doc.username;
-            this.user.imageUrl = this.config.cloudPrefix + tokenParsed.imageUrl;
+            this.user.imageUrl = tokenParsed.imageUrl;
             this.user._id = tokenParsed._doc._id;
             this.logged();
         } else {
@@ -35,16 +35,19 @@ export class AuthenticationService {
         }
     }
 
-    getCurrentUser(unsetPrefix = false): User {
-        if (!unsetPrefix) {
-            return this.user;
-        }
-
-        const token = localStorage.getItem('token');
-        const tokenHelper = new JwtHelperService();
-        let tokenParsed = tokenHelper.decodeToken(token);
-        this.user.imageUrl = tokenParsed.imageUrl;
+    getCurrentUser(): User {
         return this.user;
+    }
+
+    getUserAvatar(): string {
+        const token = localStorage.getItem('token');
+        let url = this.user.imageUrl;
+        if (token) {
+            const tokenHelper = new JwtHelperService();
+            let tokenParsed = tokenHelper.decodeToken(token);
+            url = tokenParsed.imageUrl;
+        }
+        return url || '';
     }
 
     /**
@@ -74,7 +77,6 @@ export class AuthenticationService {
     login(user: User, token: string) {
         localStorage.setItem('token', token);
         this.user = user;
-        this.user.imageUrl = this.config.cloudPrefix + user.imageUrl;
         this.logged();
         return this.user;
     }
