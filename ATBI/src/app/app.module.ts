@@ -29,6 +29,14 @@ import {NgbPaginationConfig} from "@ng-bootstrap/ng-bootstrap";
 import {APP_CONFIG, AppConfig} from "./app.config";
 
 
+import { NgZorroAntdModule } from 'ng-zorro-antd';
+/** register language package ** /
+ import { registerLocaleData } from '@angular/common';
+ import en from '@angular/common/locales/en';
+ registerLocaleData(en);
+ import { NZ_I18N, en_US } from 'ng-zorro-antd';
+ **/
+
 @NgModule({
     declarations: [
         AppComponent,
@@ -57,6 +65,7 @@ import {APP_CONFIG, AppConfig} from "./app.config";
         MatStepperModule,
         NgxEditorModule,
         ImageUploadModule.forRoot(),
+        NgZorroAntdModule.forRoot(),
         HttpClientModule
     ],
     entryComponents: [

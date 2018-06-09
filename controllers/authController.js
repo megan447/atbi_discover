@@ -1,6 +1,6 @@
 let User = require('../models/User');// get our mongoose model
 let jwt = require('jsonwebtoken'); // used to create, sign, and letify tokens
-let config = require('../config/config')
+let config = require('../config/config');
 
 module.exports = {
     fakeLogin: function (req, res) {
