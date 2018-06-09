@@ -6,6 +6,9 @@
 '~bootstrap/scss/reboot',
 '~bootstrap/scss/type';
 
+/* Bootstrap advanced & smart import (less import & function enough) */
+@import '~bootstrap/dist/css/bootstrap';
+
 /* *************************************************************** */
 /* You can add global styles to this file, and also import other style files */
 @import "mixins";
