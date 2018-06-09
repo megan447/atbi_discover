@@ -25,7 +25,6 @@ import {ImageUploadModule} from 'angular2-image-upload';
 import {CardComponent} from "./pages/home/components/card.component";
 import {SharedComponentModule} from "./sharedComponents/sharedComponentsModule";
 import {AuthenticationService} from "./globalServices/authentication.service";
-import {NgbPaginationConfig} from "@ng-bootstrap/ng-bootstrap";
 import {APP_CONFIG, AppConfig} from "./app.config";
 
 
@@ -72,7 +71,7 @@ import { NgZorroAntdModule } from 'ng-zorro-antd';
         PopupdialogComponent
     ],
     providers: [
-        HttpClient, AuthenticationService, NgbPaginationConfig,
+        HttpClient, AuthenticationService,
         {
             provide: APP_CONFIG,
             useValue: AppConfig
