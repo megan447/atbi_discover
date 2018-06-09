@@ -1,119 +1,76 @@
-<!--top-->
-<div id="topbar">
-    <div class="topmenu">
-        <a routerLink="" class="float_l">Home</a>
-        <a class="float_r">Hi, {{name}} </a>
-    </div>
-</div>
 <!--main-->
-<div id="container">
-    <!--head part-->
-  <div id="headpart">
-     <div class="float_l">
-          <a id="circle" class="avatar-section" [ngStyle]="{'background' : 'url(assets/images/joe.jpg) 0px 0px /150px 210px'}"></a>
-     </div>
-
-     <div class="float_l">
-      <h1 class="float_l" >{{name}}</h1>
-      <a class="float_l edit_btn"><strong>{{btnEdit}}</strong></a>
-      <a class="float_l">
-          <img src="assets/images/setting.png">
-      </a>
-
-      <ul class="padding_top20">
-          <li> {{postCount}} posts </li>
-          <li> {{followerCount}} followers </li>
-          <li> {{followingCount}} following </li>
-      </ul>
-
-      <div class="padding_top20">
-          <strong>{{name}}</strong><span> {{intro}}</span>
-      </div>
-
-     </div>
-  </div>
-    <!--blew part-->
-  <div>
-     <ul>
-         <li class="margin_top20">
-             <a class="pic" [ngStyle]="{'background' : 'url(assets/images/food1.jpg) 0px 0px /280px 230px'}"></a>
-             <p class="title">Pasta</p>
-             <p class="describe">I found it at a prefect restaurant</p>
-         </li>
-         <li class="margin_top20">
-             <a class="pic" [ngStyle]="{'background' : 'url(assets/images/food2.png) 0px 0px /230px 230px'}"></a>
-             <p class="title">Snack</p>
-             <p class="describe">It is very tasty and one of best partner with wine</p>
-         </li>
-         <li class="margin_top20">
-             <a class="pic" [ngStyle]="{'background' : 'url(assets/images/food3.png) 0px 0px /230px 230px'}"></a>
-             <p class="title">Seafood</p>
-             <p class="describe">good good ！！！</p>
-         </li>
-         <li class="margin_top20">
-             <a class="pic" [ngStyle]="{'background' : 'url(assets/images/food4.jpg) 0px 0px /230px 230px'}"></a>
-             <p class="title">Roast Meat</p>
-             <p class="describe">best in the Ottawa</p>
-         </li>
-     </ul>
-      <ul>
-          <li class="margin_top20">
-              <a class="pic" [ngStyle]="{'background' : 'url(assets/images/food1.jpg) 0px 0px /280px 230px'}"></a>
-              <p class="title">Pasta</p>
-              <p class="describe">I found it at a prefect restaurant</p>
-          </li>
-          <li class="margin_top20">
-              <a class="pic" [ngStyle]="{'background' : 'url(assets/images/food2.png) 0px 0px /230px 230px'}"></a>
-              <p class="title">Snack</p>
-              <p class="describe">It is very tasty and one of best partner with wine</p>
-          </li>
-          <li class="margin_top20">
-              <a class="pic" [ngStyle]="{'background' : 'url(assets/images/food3.png) 0px 0px /230px 230px'}"></a>
-              <p class="title">Seafood</p>
-              <p class="describe">good good ！！！</p>
-          </li>
-          <li class="margin_top20">
-              <a class="pic" [ngStyle]="{'background' : 'url(assets/images/food4.jpg) 0px 0px /230px 230px'}"></a>
-              <p class="title">Roast Meat</p>
-              <p class="describe">best in the Ottawa</p>
-          </li>
-      </ul>
-      <ul>
-          <li class="margin_top20">
-              <a class="pic" [ngStyle]="{'background' : 'url(assets/images/food1.jpg) 0px 0px /280px 230px'}"></a>
-              <p class="title">Pasta</p>
-              <p class="describe">I found it at a prefect restaurant</p>
-          </li>
-          <li class="margin_top20">
-              <a class="pic" [ngStyle]="{'background' : 'url(assets/images/food2.png) 0px 0px /230px 230px'}"></a>
-              <p class="title">Snack</p>
-              <p class="describe">It is very tasty and one of best partner with wine</p>
-          </li>
-          <li class="margin_top20">
-              <a class="pic" [ngStyle]="{'background' : 'url(assets/images/food3.png) 0px 0px /230px 230px'}"></a>
-              <p class="title">Seafood</p>
-              <p class="describe">good good ！！！</p>
-          </li>
-          <li class="margin_top20">
-              <a class="pic" [ngStyle]="{'background' : 'url(assets/images/food4.jpg) 0px 0px /230px 230px'}"></a>
-              <p class="title">Roast Meat</p>
-              <p class="describe">best in the Ottawa</p>
-          </li>
-      </ul>
-  </div>
+<div class="container">
+    <div class="jumbotron">
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-12 col-12 ">
+                <a href="#">
+                    <img src="assets/images/profile/joe.jpg" class="img-circle img-responsive center-horizontal">
+                </a>
+            </div>
+            <div class="col-lg-9 col-md-9 col-sm-12 col-12 ">
+                <div class="row">
+                    <div class="col-lg-2 col-md-2 col-sm-12 col-12 ">
+                        <span><h1>{{name}}</h1></span>
+                    </div>
+                    <div class="col-lg-5 col-md-5 col-sm-12 col-12">
+                        <button class="btn btn-info btn-xs center-vertical" ng-click="go('home/detail/1')"><strong>{{btnEdit}}</strong>
+                        </button>
+                    </div>
+                    <div id="set_icon" class="col-lg-2 col-md-2">
+                        <a href="#" class="img-responsive center-vertical"><img src="assets/images/profile/setting.png"></a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-12 col-12">
+                        <span>{{postCount}} posts</span>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-12 col-12">
+                        <span>{{followerCount}} followers</span>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-12 col-12">
+                        <span>{{followingCount}} following </span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <p><strong>{{name}}</strong> {{intro}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--pic list-->
+    <div class="row">
+        <div class="col-lg-3 col-md-3 col-sm-12 col-12 " *ngFor="let item of postsView; let i = index">
+            <div class="thumbnail">
+                <div class="backimg"
+                     [ngStyle]="{'background-image': 'url(' + item.images[0] + ')', 'background-size': 'cover'}">
+                    <div class="row img-circle1 hint">
+                        <a href="home/detail/1">
+                            <img src="assets/images/profile/edit.png" class="img-responsive icon_opacity">
+                        </a>
+                        <a href="#2">
+                            <img src="assets/images/profile/trash.png" class="img-responsive icon_opacity">
+                        </a>
+                    </div>
+                </div>
+                <div class="caption">
+                    <h3><a href="home/detail/1">{{item.title}}</a></h3>
+                    <p><a href="home/detail/1">{{item.content}}</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--more-->
+    <div class="more">
+        <a (click)="viewMore()">
+            <span>Show more</span>
+            <img src="assets/images/profile/dropdown.png">
+        </a>
+    </div>
+    <!--top-->
+    <button id="btn_top" title="gotop">
+        Top
+    </button>
 </div>
-<!--foot-->
-<div id="foot">
-    <a>About us</a>
-    <a>Support</a>
-    <a>Blog</a>
-    <a>PressAPI</a>
-    <a>Jobs</a>
-    <a>Privacy</a>
-    <a>Terms</a>
-    <a>Directory</a>
-    <a>Profiles</a>
-    <a>Hashtags</a>
-    <a>Language</a>
-    © 2018 Bitcoco
-</div>
+
