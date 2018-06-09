@@ -34,15 +34,16 @@ module.exports = {
     },
 
     add: function (req, res) {
+        let user = req.decodedUser;
         let post = new Post();
-        var postData = req.body;
+        let postData = req.body;
         post.status = 1;
         post.post_date = new Date();
         post.update_date = new Date();
-
+        post.owner = user._id;
         post.title = postData.title || ''; // this has to be required at front-end
         post.images = postData.images;   // this has to be required at front-end
-        post.contetn = postData.contetn || '';  // this can be empty at front-end
+        post.content = postData.content || '';  // this can be empty at front-end
 
         post.save(function (err, result) {
             if (result) {
@@ -59,7 +60,7 @@ module.exports = {
             if (err) {
                 return res.json({success: false, message: err});
             } else {
-                return res.json({success: true, message: "inactive Carpool suessfully"});
+                return res.json({success: true, message: "inactive post successfully"});
             }
         })
     },
@@ -68,17 +69,17 @@ module.exports = {
         let item = req.body;
         Post.update({'_id': item._id}, {
             $set: {
-                'images': item.email,
-                'title': item.mobile,
-                'content': item.price,
-                'post_date': item.email,
+                'images': item.images,
+                'title': item.title,
+                'content': item.content,
+                'post_date': item.post_date,
                 'update_date': new Date(),
             }
         }, function (err) {
             if (err) {
                 return res.json({success: false, message: err});
             } else {
-                return res.json({success: true, message: "update Carpool suessfully"});
+                return res.json({success: true, message: "update post successfully"});
             }
         })
     },

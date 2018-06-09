@@ -1,7 +1,8 @@
 <!--<button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear">-->
   <!--{{!isLinear ? 'Enable linear mode' : 'Disable linear mode'}}-->
 <!--</button>-->
-<form (ngSubmit)="onSubmit(f)" #f="ngForm" >
+<script src="popupdialog.component.spec.ts"></script>
+<form  #f="ngForm" >
 <mat-horizontal-stepper #stepper>
   <mat-step>
       <ng-template matStepLabel>Write your article</ng-template>
@@ -14,7 +15,7 @@
                 <!--ngModel-->
                 <!--name="article"></textarea>-->
       <!--</mat-form-field>-->
-      <app-ngx-editor [placeholder]="'Enter text here...'" [spellcheck]="true" name="article">
+      <app-ngx-editor [(ngModel)]="content" [placeholder]="'Enter text here...'" [spellcheck]="true" name="article">
       </app-ngx-editor>
       <div>
         <button class="btn btn-success" matStepperNext type="button">Next</button>
@@ -22,15 +23,12 @@
   </mat-step>
   <mat-step>
       <ng-template matStepLabel>Upload Pictures</ng-template>
-        <!--<input  matInput-->
-                <!--placeholder="Address"-->
-                <!--required-->
-                <!--ngModel-->
-                <!--name="picture">-->
-          <image-upload></image-upload>
+          <image-upload
+                        (uploadFinished)="onUploadFinished($event)"
+                        ></image-upload>
       <div>
         <button mat-button matStepperPrevious class="btn btn-warning" type="button">Back</button>
-        <button mat-button matStepperNext class="btn btn-success" type="submit">Submit</button>
+        <button mat-button matStepperNext class="btn btn-success" type="button" (click)="onSubmitClick()">Submit</button>
       </div>
   </mat-step>
 </mat-horizontal-stepper>
