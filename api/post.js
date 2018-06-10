@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
+
 let postController = require('../controllers/postController');
+let checkAuthenticated = require('../services/checkAuthenticated');
 
 /**
  * @api {get} post/getAll get all posts
@@ -20,7 +22,7 @@ let postController = require('../controllers/postController');
  *       "posts": [{...},{...},{...}]
  *     }
  */
-router.get('/getAll', postController.getAll);
+router.get('/getAll',postController.getAll);
 
 /**
  * @api {get} /post/getByUser getByUser
@@ -102,8 +104,7 @@ router.get('/getById', postController.getById);
 *       "result": true
 *     }
  */
-router.post('/add', postController.add);
-
+router.post('/add', checkAuthenticated, postController.add);
 
 
 /**
