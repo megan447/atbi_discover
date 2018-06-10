@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-instruction',
@@ -7,9 +7,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InstructionComponent implements OnInit {
 
+  @Input()
+  content: string;
+  @Input()
+  images: string[];
+
+  array = [ 1, 2, 3, 4 ];
+
   constructor() { }
 
   ngOnInit() {
+    console.log(this.content);
+    document.getElementById('content').innerHTML = this.content;
   }
+
+
 
 }

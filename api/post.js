@@ -156,5 +156,6 @@ router.post('/delete', postController.delete);
  *       "result": true
  *     }
  */
+
 router.post('/update', postController.update);
 module.exports = router;

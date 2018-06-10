@@ -14,9 +14,6 @@ export class PopupdialogComponent implements OnInit {
     content: any;
     // onAdd = new EventEmitter();
 
-
-
-
     constructor(
         public dialogRef: MatDialogRef<PopupdialogComponent>,
         @Inject(MAT_DIALOG_DATA) public data: any) {
@@ -24,7 +21,6 @@ export class PopupdialogComponent implements OnInit {
     }
     ngOnInit() {
     }
-
 
     onUploadFinished(event){
         this.post.images.push("https://i2.wp.com/beebom.com/wp-content/uploads/2016/01/Reverse-Image-Search-Engines-Apps-And-Its-Uses-2016.jpg?resize=640%2C426");

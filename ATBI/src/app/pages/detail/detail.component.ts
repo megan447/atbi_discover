@@ -17,7 +17,6 @@ export class DetailComponent implements OnInit {
     }
 
     title = 'home';
-
     post: Post;
     currentUser: User;
 
