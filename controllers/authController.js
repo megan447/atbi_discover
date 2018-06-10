@@ -14,7 +14,7 @@ module.exports = {
                 user.imageUrl = userObj.imageUrl;
 
                 let token = jwt.sign(user, config.secret(), {
-                    expiresIn: 60 * 60// expires in seconds
+                    expiresIn: 12 * 3600// expires in seconds
                 });
 
                 // return the information including token as JSON
