@@ -26,7 +26,7 @@ export class DetailComponent implements OnInit {
 
     ngOnInit(): void {
 
-        this.detailService.getBy_id('5b1d5f9b75eb9a1952e1831f').subscribe(
+        this.detailService.getBy_id('5b21c87364863a1f68b25ca8').subscribe(
             response=>{
                 if(response.success){
                     this.post = response.result;

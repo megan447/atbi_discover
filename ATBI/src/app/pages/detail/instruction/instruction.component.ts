@@ -17,7 +17,6 @@ export class InstructionComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log(this.content);
     document.getElementById('content').innerHTML = this.content;
   }
 
