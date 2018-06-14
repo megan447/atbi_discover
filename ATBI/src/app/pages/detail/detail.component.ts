@@ -40,7 +40,12 @@ export class DetailComponent implements OnInit {
         // this.post._id = '5aebbdd1356c600be52f6146';  // test
     }
 
-    openDialog() {
+    openEditDialog() {
+
+    };
+
+
+    openPostDialog() {
         let dialogRef = this.dialog.open(PopupdialogComponent, {
                 width: "80%",
                 height: "400px",
