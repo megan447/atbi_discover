@@ -58,7 +58,6 @@ export class DetailComponent implements OnInit {
             this.detailService.addPost(result).subscribe(response=>{
                 console.log(response);
                 if(response.success){
-
                 }
             });
         });
