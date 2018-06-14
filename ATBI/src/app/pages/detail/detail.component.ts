@@ -3,7 +3,8 @@ import {Post} from "../../models/Post";
 import {User} from "../../models/User";
 import {AuthenticationService} from "../../globalServices/authentication.service";
 import {DetailService} from "./detail.service";
-
+import {PopupdialogComponent} from "./popupdialog/popupdialog.component";
+import {MatDialog} from '@angular/material';
 
 @Component({
     selector: 'app-detail-page',
@@ -12,8 +13,10 @@ import {DetailService} from "./detail.service";
     providers: [DetailService]
 })
 export class DetailComponent implements OnInit {
+
     constructor(private authService: AuthenticationService,
-                private detailService: DetailService) {
+                private detailService: DetailService,
+                public dialog: MatDialog) {
     }
 
     title = 'home';
@@ -23,7 +26,7 @@ export class DetailComponent implements OnInit {
 
     ngOnInit(): void {
 
-        this.detailService.getBy_id('5b1c39a7bb9bbd396c22baca').subscribe(
+        this.detailService.getBy_id('5b1d5f9b75eb9a1952e1831f').subscribe(
             response=>{
                 if(response.success){
                     this.post = response.result;
@@ -35,6 +38,24 @@ export class DetailComponent implements OnInit {
         );
         // this.post = new Post();
         // this.post._id = '5aebbdd1356c600be52f6146';  // test
+    }
 
+    openDialog() {
+        let dialogRef = this.dialog.open(PopupdialogComponent, {
+                width: "80%",
+                height: "400px",
+                data: { post: new Post() }
+            },
+        );
+
+        dialogRef.afterClosed().subscribe(result => {
+            console.log('closed:',result);
+            this.detailService.addPost(result).subscribe(response=>{
+                console.log(response);
+                if(response.success){
+
+                }
+            });
+        });
     }
 }

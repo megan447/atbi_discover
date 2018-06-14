@@ -15,5 +15,8 @@
             <app-comment-component *ngIf="post" [object_id]="post?._id"
                                    [owner]="post?.owner"></app-comment-component>
         </div>
+        <div class="col-md-2">
+            <button (click)="openDialog()">New Post</button>
+        </div>
     </div>
 </div>
