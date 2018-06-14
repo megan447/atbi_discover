@@ -98,9 +98,9 @@ export class PopupdialogComponent implements OnInit {
     }
 
     onSubmitClick(): void {
-        this.post.content = this.content;
+        this.post.content = this.editorContent;
         // this.onAdd.emit(this.post);
         this.dialogRef.close(this.post);
-        console.log(this.post);
+        console.log('from popup',this.post);
     }
 }
