@@ -29,6 +29,8 @@ import {APP_CONFIG, AppConfig} from "./app.config";
 
 
 import { NgZorroAntdModule } from 'ng-zorro-antd';
+import { TestComponent } from './pages/detail/test/test.component';
+import { EditDialogComponent } from './pages/detail/edit-dialog/edit-dialog.component';
 /** register language package ** /
  import { registerLocaleData } from '@angular/common';
  import en from '@angular/common/locales/en';
@@ -47,7 +49,9 @@ import { NgZorroAntdModule } from 'ng-zorro-antd';
         DetailProfileComponent,
         ProfileComponent,
         PopupdialogComponent,
-        CardComponent
+        CardComponent,
+        TestComponent,
+        EditDialogComponent
     ],
     imports: [
         BrowserModule,
