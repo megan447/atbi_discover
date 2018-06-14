@@ -69,7 +69,8 @@ import { EditDialogComponent } from './pages/detail/edit-dialog/edit-dialog.comp
         HttpClientModule
     ],
     entryComponents: [
-        PopupdialogComponent
+        PopupdialogComponent,
+        EditDialogComponent
     ],
     providers: [
         HttpClient, AuthenticationService,
