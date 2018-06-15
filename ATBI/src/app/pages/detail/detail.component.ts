@@ -28,7 +28,7 @@ export class DetailComponent implements OnInit {
 
     ngOnInit(): void {
 
-        this.detailService.getBy_id('5b21c87364863a1f68b25ca8').subscribe(
+        this.detailService.getBy_id('5b22db8b66654f3064d55743').subscribe(
             response=>{
                 if(response.success){
                     //get result from server and give the value to post
@@ -49,16 +49,18 @@ export class DetailComponent implements OnInit {
         let dialogRef = this.dialog.open(EditDialogComponent, {
                 width: "80%",
                 height: "400px",
-                data:this.post.content
+                data: {
+                    post: this.post
+                },
         }
         );
 
         dialogRef.afterClosed().subscribe(result => {
+
             console.log('closed:',result);
-            this.detailService.addPost(result).subscribe(response=>{
+            this.detailService.updatePost(result).subscribe(response=>{
                 console.log(response);
                 if(response.success){
-
                 }
             });
         });
@@ -77,6 +79,9 @@ export class DetailComponent implements OnInit {
         );
 
         dialogRef.afterClosed().subscribe(result => {
+            if(!result.content) {
+                return
+            }
             console.log('closed:',result);
             this.detailService.addPost(result).subscribe(response=>{
                 console.log('jieshuoshi:',response);

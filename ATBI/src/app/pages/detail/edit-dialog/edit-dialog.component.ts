@@ -1,8 +1,7 @@
-import {Component, Input, OnInit,Inject} from '@angular/core';
+import {Component, OnInit,Inject} from '@angular/core';
 import {MAT_DIALOG_DATA,MatDialogRef} from '@angular/material';
 import {Post} from "../../../models/Post";
-import {NzMessageService, UploadFile} from 'ng-zorro-antd'
-import {PopupdialogComponent} from "../popupdialog/popupdialog.component";
+import {NzMessageService, UploadFile} from 'ng-zorro-antd';
 
 @Component({
   selector: 'app-edit-dialog',
@@ -10,9 +9,8 @@ import {PopupdialogComponent} from "../popupdialog/popupdialog.component";
   styleUrls: ['./edit-dialog.component.scss']
 })
 export class EditDialogComponent implements OnInit {
-  public title:string;
+
     post: Post;
-    editorContent: any;
     previewImage = '';
     previewVisible = false;
     loading = false;
@@ -47,10 +45,15 @@ export class EditDialogComponent implements OnInit {
     };
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,
-              public dialogRef: MatDialogRef<PopupdialogComponent>,
+              public dialogRef: MatDialogRef<EditDialogComponent>,
               private msg: NzMessageService) {
 
-      this.editorContent= this.data;
+              this.post = this.data.post;
+
+              // this.editorContent = this.data.post.content;
+              // this.fileList = this.fileList.concat(this.data.post.images);
+              // console.log(this.editorContent, this.fileList);
+
   }
 
 
@@ -97,7 +100,6 @@ export class EditDialogComponent implements OnInit {
 
     onSubmitClick(): void {
 
-        this.post.content= this.editorContent;
         // this.onAdd.emit(this.post);
         this.dialogRef.close(this.post);
         console.log(this.post);
