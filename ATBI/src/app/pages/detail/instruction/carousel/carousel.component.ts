@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import * as $ from 'jquery';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-carousel',
@@ -7,6 +6,9 @@ import * as $ from 'jquery';
   styleUrls: ['./carousel.component.scss']
 })
 export class CarouselComponent implements OnInit {
+
+    @Input()
+    images: string[];
 
     constructor() {
     }

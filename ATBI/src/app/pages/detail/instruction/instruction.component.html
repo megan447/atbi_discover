@@ -1,8 +1,12 @@
 <div class="container-fluid">
   <div class="row">
-      <app-carousel></app-carousel>
+      <nz-carousel nzAutoPlay>
+          <div nz-carousel-content *ngFor="let index of images" id="carousel">
+              <h3><img src={{index}} style="width: 100%; height: 100%"></h3>
+          </div>
+      </nz-carousel>
   </div>
     <div class="row">
-        <textarea style="width: 80%; margin: auto" rows="5"></textarea>
+        <div id="content" style="width: 80%; margin-top: 20px"></div>
     </div>
 </div>

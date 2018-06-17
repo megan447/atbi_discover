@@ -1,0 +1,84 @@
+<!--<script src="edit-dialog.component.spec.ts"></script>-->
+<!--<div id="title"></div>-->
+<!--<mat-horizontal-stepper #stepper>-->
+  <!--<mat-step>-->
+    <!--<ng-template matStepLabel>Write your article</ng-template>-->
+    <!--<app-ngx-editor [(ngModel)]="editorContent"-->
+                    <!--[config]="editorConfig">-->
+    <!--</app-ngx-editor>-->
+    <!--<div>-->
+      <!--<button class="btn btn-success" matStepperNext type="button">Next</button>-->
+    <!--</div>-->
+  <!--</mat-step>-->
+  <!--<mat-step>-->
+    <!--&lt;!&ndash;<ng-template matStepLabel>Upload Pictures</ng-template>&ndash;&gt;-->
+    <!--&lt;!&ndash;<image-upload&ndash;&gt;-->
+    <!--&lt;!&ndash;(uploadFinished)="onUploadFinished($event)"&ndash;&gt;-->
+    <!--&lt;!&ndash;&gt;</image-upload>&ndash;&gt;-->
+    <!--<div class="clearfix">-->
+      <!--<nz-upload-->
+              <!--nzAction="https://jsonplaceholder.typicode.com/posts/"-->
+              <!--nzListType="picture-card"-->
+              <!--[(nzFileList)]="fileList"-->
+              <!--[nzBeforeUpload]="beforeUpload"-->
+              <!--[nzShowButton]="fileList.length < 8"-->
+              <!--[nzPreview]="handlePreview"-->
+              <!--(nzChange)="handleChange($event)">-->
+        <!--<i class="anticon anticon-plus"></i>-->
+        <!--<div class="ant-upload-text">Upload</div>-->
+      <!--</nz-upload>-->
+      <!--<nz-modal [nzVisible]="previewVisible" [nzContent]="modalContent" [nzFooter]="null" (nzOnCancel)="previewVisible=false">-->
+        <!--<ng-template #modalContent>-->
+          <!--<img [src]="previewImage" [ngStyle]="{ 'width': '100%' }" />-->
+        <!--</ng-template>-->
+      <!--</nz-modal>-->
+    <!--</div>-->
+    <!--<div>-->
+      <!--<button mat-button matStepperPrevious class="btn btn-warning" type="button">Back</button>-->
+      <!--<button mat-button matStepperNext class="btn btn-success" type="button" (click)="onSubmitClick()">Submit</button>-->
+    <!--</div>-->
+  <!--</mat-step>-->
+<!--</mat-horizontal-stepper>-->
+
+<script src="edit-dialog.component.spec.ts"></script>
+<mat-horizontal-stepper #stepper>
+  <mat-step>
+    <ng-template matStepLabel>Write your article</ng-template>
+    <app-ngx-editor [(ngModel)]="post.content"
+                    [config]="editorConfig"
+    >
+    </app-ngx-editor>
+    <div>
+      <button class="btn btn-success" matStepperNext type="button">Next</button>
+    </div>
+  </mat-step>
+  <mat-step>
+    <!--<ng-template matStepLabel>Upload Pictures</ng-template>-->
+    <!--<image-upload-->
+    <!--(uploadFinished)="onUploadFinished($event)"-->
+    <!--&gt;</image-upload>-->
+    <div class="clearfix">
+      <nz-upload
+              nzAction="https://jsonplaceholder.typicode.com/posts/"
+              nzListType="picture-card"
+              [(nzFileList)]="fileList"
+              [nzBeforeUpload]="beforeUpload"
+              [nzShowButton]="fileList.length < 8"
+              [nzPreview]="handlePreview"
+              (nzChange)="handleChange($event)">
+        <i class="anticon anticon-plus"></i>
+        <div class="ant-upload-text">Upload</div>
+      </nz-upload>
+      <nz-modal [nzVisible]="previewVisible" [nzContent]="modalContent" [nzFooter]="null" (nzOnCancel)="previewVisible=false">
+        <ng-template #modalContent>
+          <img [src]="previewImage" [ngStyle]="{ 'width': '100%' }" />
+        </ng-template>
+      </nz-modal>
+    </div>
+    <div>
+      <button mat-button matStepperPrevious class="btn btn-warning" type="button">Back</button>
+      <button mat-button matStepperNext class="btn btn-success" type="button" (click)="onSubmitClick()">Submit</button>
+    </div>
+  </mat-step>
+</mat-horizontal-stepper>
+

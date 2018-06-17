@@ -13,6 +13,13 @@ export class DetailService {
                 private http: HttpClient) {
     }
 
+    public updatePost(post: Post): Observable<any> {
+        return this.http.post(this.config.apiEndpoint + '/post/update', post,
+            {
+                headers: this.jwt()
+            })
+    }
+
 
     public getBy_id(_id: string): Observable<any> {
         return this.http.get(this.config.apiEndpoint + '/post/getById?_id=' + _id,

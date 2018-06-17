@@ -26,9 +26,9 @@ import {CardComponent} from "./pages/home/components/card.component";
 import {SharedComponentModule} from "./sharedComponents/sharedComponentsModule";
 import {AuthenticationService} from "./globalServices/authentication.service";
 import {APP_CONFIG, AppConfig} from "./app.config";
-
-
 import { NgZorroAntdModule } from 'ng-zorro-antd';
+import { EditDialogComponent } from './pages/detail/edit-dialog/edit-dialog.component';
+
 /** register language package ** /
  import { registerLocaleData } from '@angular/common';
  import en from '@angular/common/locales/en';
@@ -47,7 +47,8 @@ import { NgZorroAntdModule } from 'ng-zorro-antd';
         DetailProfileComponent,
         ProfileComponent,
         PopupdialogComponent,
-        CardComponent
+        CardComponent,
+        EditDialogComponent
     ],
     imports: [
         BrowserModule,
@@ -68,7 +69,8 @@ import { NgZorroAntdModule } from 'ng-zorro-antd';
         HttpClientModule
     ],
     entryComponents: [
-        PopupdialogComponent
+        PopupdialogComponent,
+        EditDialogComponent
     ],
     providers: [
         HttpClient, AuthenticationService,

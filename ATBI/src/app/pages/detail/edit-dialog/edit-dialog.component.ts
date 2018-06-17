@@ -1,17 +1,16 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, OnInit,Inject} from '@angular/core';
+import {MAT_DIALOG_DATA,MatDialogRef} from '@angular/material';
 import {Post} from "../../../models/Post";
-import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material";
-import {NzMessageService, UploadFile} from 'ng-zorro-antd'
+import {NzMessageService, UploadFile} from 'ng-zorro-antd';
 
 @Component({
-  selector: 'app-popupdialog',
-  templateUrl: './popupdialog.component.html',
-  styleUrls: ['./popupdialog.component.scss']
+  selector: 'app-edit-dialog',
+  templateUrl: './edit-dialog.component.html',
+  styleUrls: ['./edit-dialog.component.scss']
 })
-export class PopupdialogComponent implements OnInit {
+export class EditDialogComponent implements OnInit {
 
     post: Post;
-    editorContent: any;
     previewImage = '';
     previewVisible = false;
     loading = false;
@@ -44,22 +43,24 @@ export class PopupdialogComponent implements OnInit {
 
         ]
     };
-    // onAdd = new EventEmitter();
 
-    constructor(
-        public dialogRef: MatDialogRef<PopupdialogComponent>,
-        @Inject(MAT_DIALOG_DATA) public data: any,
-        private msg: NzMessageService) {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any,
+              public dialogRef: MatDialogRef<EditDialogComponent>,
+              private msg: NzMessageService) {
 
-        this.post = this.data.post;
-    }
-    ngOnInit() {
-    }
+              this.post = this.data.post;
 
-    onUploadFinished(event){
-        this.post.images.push("https://i2.wp.com/beebom.com/wp-content/uploads/2016/01/Reverse-Image-Search-Engines-Apps-And-Its-Uses-2016.jpg?resize=640%2C426");
-    }
+              // this.editorContent = this.data.post.content;
+              // this.fileList = this.fileList.concat(this.data.post.images);
+              // console.log(this.editorContent, this.fileList);
 
+  }
+
+
+  ngOnInit() {
+    // document.getElementById('title').innerHTML = this.title;
+
+  }
     handlePreview = (file: UploadFile) => {
         this.previewImage = file.url || file.thumbUrl;
         this.previewVisible = true;
@@ -98,9 +99,10 @@ export class PopupdialogComponent implements OnInit {
     }
 
     onSubmitClick(): void {
-        this.post.content = this.editorContent;
+
         // this.onAdd.emit(this.post);
         this.dialogRef.close(this.post);
-        console.log('from popup',this.post);
+        console.log(this.post);
     }
+
 }
