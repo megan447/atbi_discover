@@ -49,14 +49,14 @@
                         <a href="home/detail/1">
                             <img src="assets/images/profile/edit.png" class="img-responsive icon_opacity">
                         </a>
-                        <a href="#2">
+                        <a href="javascript:void(0);" (click)="deleteProfilePosts(item._id)">
                             <img src="assets/images/profile/trash.png" class="img-responsive icon_opacity">
                         </a>
                     </div>
                 </div>
-                <div class="caption">
-                    <h3><a href="home/detail/1">{{item.title}}</a></h3>
-                    <p><a href="home/detail/1">{{item.content}}</a></p>
+                <div class="caption" ng-app="myApp" ng-controller="namesCtrl" >
+                    <h3><a href="home/detail/1">{{item.title.substr(0,21)}}</a></h3>
+                    <p><a href="home/detail/1">{{item.content.substr(0,70) | striphtml}}</a></p>
                 </div>
             </div>
         </div>
@@ -73,4 +73,5 @@
         Top
     </button>
 </div>
+
 

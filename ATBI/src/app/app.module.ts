@@ -14,6 +14,7 @@ import {CommentsComponent} from './pages/detail/comments/comments.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {DetailProfileComponent} from './pages/detail/profile/detail-profile.component';
 import {ProfileComponent} from "./pages/profile/profile.component";
+import {StripHtmlPipe} from "./pages/profile/StripHtmlPipe";
 import {MatDialogModule} from '@angular/material';
 import {PopupdialogComponent} from './pages/detail/popupdialog/popupdialog.component';
 import {MatButtonModule} from '@angular/material';
@@ -27,7 +28,6 @@ import {SharedComponentModule} from "./sharedComponents/sharedComponentsModule";
 import {AuthenticationService} from "./globalServices/authentication.service";
 import {NgbPaginationConfig} from "@ng-bootstrap/ng-bootstrap";
 import {APP_CONFIG, AppConfig} from "./app.config";
-
 
 import { NgZorroAntdModule } from 'ng-zorro-antd';
 /** register language package ** /
@@ -48,7 +48,8 @@ import { NgZorroAntdModule } from 'ng-zorro-antd';
         DetailProfileComponent,
         ProfileComponent,
         PopupdialogComponent,
-        CardComponent
+        CardComponent,
+        StripHtmlPipe
     ],
     imports: [
         BrowserModule,

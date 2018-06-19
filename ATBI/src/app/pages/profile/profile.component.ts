@@ -1,3 +1,4 @@
+///<reference path="../../../../node_modules/@angular/core/src/metadata/directives.d.ts"/>
 import {Component, Inject, Input, OnInit} from '@angular/core';
 import {ProfileService} from "./profile.service";
 import {AuthenticationService} from "../../globalServices/authentication.service";
@@ -5,8 +6,8 @@ import {APP_CONFIG, IAppConfig, NotificationSetting} from "../../app.config";
 import {ActivatedRoute} from "@angular/router";
 import {User} from "../../models/User";
 import {Post} from "../../models/Post";
-
 declare var $: any;
+
 
 @Component({
     selector: 'app-profile',
@@ -14,6 +15,7 @@ declare var $: any;
     styleUrls: ['./profile.component.scss'],
     providers: [ProfileService]
 })
+
 export class ProfileComponent implements OnInit {
 
     postCount: number = 112;
@@ -23,7 +25,6 @@ export class ProfileComponent implements OnInit {
     name: string;
     intro: string = 'is a foodie. He likes to know different people from different places.';
     profileImgUrl;
-
     private viewCount = 8;
     private VIEWPERPAGE = 8;
 
@@ -75,7 +76,7 @@ export class ProfileComponent implements OnInit {
         // this.postsView = this.posts.slice(0, this.viewCount);
         this.currentUser = this.authService.getCurrentUser();
         this.profileImgUrl = this.urlPrefix + this.currentUser.imageUrl;
-        console.log(this.currentUser);
+        //console.log(this.currentUser);
         this.loadProfilePosts();
     }
 
@@ -87,6 +88,7 @@ export class ProfileComponent implements OnInit {
                         console.log(response.result);
                         this.posts = this.postsView = <Post[]>response.result;
                         this.name = this.currentUser.username;
+
                     }
                 },
                 error => {
@@ -97,6 +99,21 @@ export class ProfileComponent implements OnInit {
                 });
     }
 
+     deleteProfilePosts(id) {
+        this.profileService.deleteProfilePosts(id)
+            .subscribe(
+                response => {
+                    if (response.success) {
+                        this.posts = this.postsView = <Post[]>response.result;
+                    }
+                },
+                error => {
+                    // this._notificationsService.warn(
+                    //     'Error',
+                    //     error.message
+                    // );
+                });
+    }
 
     viewMore() {
         this.viewCount += this.VIEWPERPAGE;
@@ -121,3 +138,4 @@ $(function () {
     });
 
 });
+

@@ -55,14 +55,14 @@ module.exports = {
     },
 
     delete: function (req, res) {
-        let item = req.body;
-        Post.update({'_id': item._id}, {$set: {'status': 0}}, function (err) {
+        let id = req.query._id;
+        Post.findOneAndRemove({'_id': id},function (err) {
             if (err) {
-                return res.json({success: false, message: err});
+                return res.json({success: false, message:err});
             } else {
-                return res.json({success: true, message: "inactive post successfully"});
+                return res.json({success: true, message: "remove successful"});
             }
-        })
+        });
     },
 
     update: function (req, res) {
