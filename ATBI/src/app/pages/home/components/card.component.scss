@@ -20,6 +20,14 @@
   margin: 1rem;
   box-shadow: 5px 5px grey;
 
+  a:hover{
+    text-shadow: 2px 2px red;
+    color: white;
+    background: darkslateblue;
+    text-decoration: none;
+    border-radius: 3% 3% 40% 40%;
+  }
+
   img{
     width: 20vw;
     display: block;
