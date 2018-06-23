@@ -1,16 +1,16 @@
 <!--main-->
 <div class="container">
-    <div class="jumbotron">
+    <div class="jumbotron" *ngIf="postOwner">
         <div class="row">
             <div class="col-lg-3 col-md-3 col-sm-12 col-12 ">
                 <a href="#">
-                    <img src="{{ profileImgUrl }}" class="img-circle img-responsive center-horizontal">
+                    <img src="{{ postOwner?.imageUrl }}" class="img-circle img-responsive center-horizontal">
                 </a>
             </div>
             <div class="col-lg-9 col-md-9 col-sm-12 col-12 ">
                 <div class="row">
                     <div class="col-lg-2 col-md-2 col-sm-12 col-12 ">
-                        <span><h1>{{name}}</h1></span>
+                        <span><h1>{{postOwner?.username}}</h1></span>
                     </div>
                     <div class="col-lg-5 col-md-5 col-sm-12 col-12">
                         <button class="btn btn-info btn-xs center-vertical" ng-click="go('home/detail/1')"><strong>{{btnEdit}}</strong>
@@ -33,7 +33,7 @@
                 </div>
                 <div class="row">
                     <div class="col">
-                        <p><strong>{{name}}</strong> {{intro}}</p>
+                        <p><strong>{{postOwner.username}}</strong> {{intro}}</p>
                     </div>
                 </div>
             </div>

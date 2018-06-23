@@ -25,20 +25,18 @@ export class ProfileComponent implements OnInit {
     btnEdit: string = 'Edit Profile';
     name: string;
     intro: string = 'is a foodie. He likes to know different people from different places.';
-    profileImgUrl;
+
     private viewCount = 8;
     private VIEWPERPAGE = 8;
     public href: string = "";
     private owner_id;
+    public postOwner: User;
 
     posts: any;
     postsView: any;
     urlPrefix: string;
 
-    @Input()
-    object_id: string;
-    @Input()
-    owner: User;
+
 
     private currentUser: User;
 
@@ -54,8 +52,9 @@ export class ProfileComponent implements OnInit {
         this.href = this.router.url;
        // console.log(this.href.split("/")[3]);
         this.owner_id = this.href.split("/")[3];
+        console.log(this.owner_id);
         this.currentUser = this.authService.getCurrentUser();
-        this.profileImgUrl = this.urlPrefix + this.currentUser.imageUrl;
+        // this.profileImgUrl = "";
        // console.log(this.currentUser);
         if(this.owner_id){
             this.loadProfilePosts();
@@ -69,10 +68,16 @@ export class ProfileComponent implements OnInit {
                     if (response.success) {
                         //console.log(response.result);
                         this.posts = this.postsView = <Post[]>response.result;
-                        this.name = this.currentUser.username;
+                        console.log("aasdasdasd", this.posts);
+                        this.postOwner = this.posts[0].owner;
+                        console.log("aasdasdasd", this.postOwner);
+
+                        // this.name = this.currentUser.username;
+
                     }
                 });
     }
+
 
      deleteProfilePosts(id) {
         this.profileService.deleteProfilePosts(id)
@@ -111,5 +116,6 @@ $(function () {
     $('#btn_top').click(function () {
         $('html,body').animate({scrollTop: 0}, 500);
     });
+
 });
 
