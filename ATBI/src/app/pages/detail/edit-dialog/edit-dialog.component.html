@@ -44,7 +44,7 @@
 <mat-horizontal-stepper #stepper>
   <mat-step>
     <ng-template matStepLabel>Write your article</ng-template>
-    <app-ngx-editor [(ngModel)]="post.content"
+    <app-ngx-editor [(ngModel)]="updatePost.content"
                     [config]="editorConfig"
     >
     </app-ngx-editor>

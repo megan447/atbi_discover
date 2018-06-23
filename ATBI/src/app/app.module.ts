@@ -9,7 +9,6 @@ import {AppRoutingModule} from "./route.module";
 import {InstructionComponent} from "./pages/detail/instruction/instruction.component";
 import {DetailComponent} from "./pages/detail/detail.component";
 import {HomeComponent} from "./pages/home/home.component";
-import {CarouselComponent} from './pages/detail/instruction/carousel/carousel.component';
 import {CommentsComponent} from './pages/detail/comments/comments.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {DetailProfileComponent} from './pages/detail/profile/detail-profile.component';
@@ -42,7 +41,6 @@ import { EditDialogComponent } from './pages/detail/edit-dialog/edit-dialog.comp
         InstructionComponent,
         DetailComponent,
         HomeComponent,
-        CarouselComponent,
         CommentsComponent,
         DetailProfileComponent,
         ProfileComponent,
