@@ -74,10 +74,31 @@ export class ProfileComponent implements OnInit {
         //         {title: 'seafood', content: 'It is a good shellfish and very tasty.',imgUrls:[]},
         //         {title: 'seafood', content: 'It is a good shellfish and very tasty.',imgUrls:[]}];
         // this.postsView = this.posts.slice(0, this.viewCount);
-        this.currentUser = this.authService.getCurrentUser();
-        this.profileImgUrl = this.urlPrefix + this.currentUser.imageUrl;
-        //console.log(this.currentUser);
-        this.loadProfilePosts();
+
+        // if(this.authService.getCurrentUser()==null){
+        //     this.profileService.loadProfilePosts("5b1498edf9277a06de5034ad")
+        //         .subscribe(
+        //             response => {
+        //                 if (response.success) {
+        //                     //console.log(response.result);
+        //                     this.posts = this.postsView = <Post[]>response.result;
+        //                     this.name = this.currentUser.username;
+        //
+        //                 }
+        //             },
+        //             error => {
+        //                 // this._notificationsService.warn(
+        //                 //     'Error',
+        //                 //     error.message
+        //                 // );
+        //             });
+        // }
+        // else {
+            this.currentUser = this.authService.getCurrentUser();
+            this.profileImgUrl = this.urlPrefix + this.currentUser.imageUrl;
+            console.log(this.currentUser);
+            this.loadProfilePosts();
+        //}
     }
 
     private loadProfilePosts() {
@@ -85,7 +106,7 @@ export class ProfileComponent implements OnInit {
             .subscribe(
                 response => {
                     if (response.success) {
-                        console.log(response.result);
+                        //console.log(response.result);
                         this.posts = this.postsView = <Post[]>response.result;
                         this.name = this.currentUser.username;
 
