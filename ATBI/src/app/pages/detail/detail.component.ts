@@ -35,7 +35,6 @@ export class DetailComponent implements OnInit {
                 if (response.success) {
                     //get result from server and give the value to post
                     this.post = response.result;
-                    this.post.owner = this.authService.getCurrentUser();
                     this.currentUser = this.authService.getCurrentUser();
                     console.log(this.post);
                 }
