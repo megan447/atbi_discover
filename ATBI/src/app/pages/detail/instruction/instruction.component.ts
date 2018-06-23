@@ -11,6 +11,7 @@ export class InstructionComponent implements OnInit {
   content: string;
   @Input()
   images: string[];
+  //注入了detail page html里面的post.content &post.image
 
   array = [ 1, 2, 3, 4 ];
 
