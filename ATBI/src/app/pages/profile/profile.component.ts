@@ -70,11 +70,9 @@ export class ProfileComponent implements OnInit {
                         //console.log(response.result);
                         this.posts = this.postsView = <Post[]>response.result;
                         this.name = this.currentUser.username;
-
                     }
                 });
     }
-
 
      deleteProfilePosts(id) {
         this.profileService.deleteProfilePosts(id)
@@ -113,6 +111,5 @@ $(function () {
     $('#btn_top').click(function () {
         $('html,body').animate({scrollTop: 0}, 500);
     });
-
 });
 
