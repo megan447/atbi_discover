@@ -29,8 +29,8 @@ export class DetailComponent implements OnInit {
     ngOnInit(): void {
 
         this.detailService.getBy_id('5b22db8b66654f3064d55743').subscribe(
-            response=>{
-                if(response.success){
+            response => {
+                if (response.success) {
                     //get result from server and give the value to post
                     this.post = response.result;
                     this.post.owner = this.authService.getCurrentUser();
@@ -46,13 +46,13 @@ export class DetailComponent implements OnInit {
 
 // get content and edit it
     openEditDialog() {
-        let dialogRef = this.dialog.open(EditDialogComponent, {
+        const dialogRef = this.dialog.open(EditDialogComponent, {
                 width: "80%",
                 height: "400px",
                 data: {
                     post: this.post
                 },
-        }
+            }
         );
 
         dialogRef.afterClosed().subscribe(result => {
@@ -62,7 +62,7 @@ export class DetailComponent implements OnInit {
             console.log('closed:',result);
             this.detailService.updatePost(result).subscribe(response=>{
                 console.log(response);
-                if(response.success){
+                if (response.success) {
                 }
             });
         });
@@ -70,13 +70,13 @@ export class DetailComponent implements OnInit {
     };
 
 
-//this is a function which is used to open a new post dialog
+// this is a function which is used to open a new post dialog
     openPostDialog() {
-        let dialogRef = this.dialog.open(PopupdialogComponent, {
+        const dialogRef = this.dialog.open(PopupdialogComponent, {
                 width: "80%",
                 height: "400px",
-            //none value
-                data: { post: new Post() }
+                // none value
+                data: {post: new Post()}
             },
         );
 
@@ -84,10 +84,10 @@ export class DetailComponent implements OnInit {
             if(!result) {
                 return
             }
-            console.log('closed:',result);
-            this.detailService.addPost(result).subscribe(response=>{
-                console.log('jieshuoshi:',response);
-                if(response.success){
+            console.log('closed:', result);
+            this.detailService.addPost(result).subscribe(response => {
+                console.log('jieshuoshi:', response);
+                if (response.success) {
                 }
             });
         });

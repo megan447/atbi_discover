@@ -27,6 +27,7 @@ import {AuthenticationService} from "./globalServices/authentication.service";
 import {APP_CONFIG, AppConfig} from "./app.config";
 import { NgZorroAntdModule } from 'ng-zorro-antd';
 import { EditDialogComponent } from './pages/detail/edit-dialog/edit-dialog.component';
+import {FooterComponent} from "./footer.component";
 
 /** register language package ** /
  import { registerLocaleData } from '@angular/common';
@@ -46,7 +47,8 @@ import { EditDialogComponent } from './pages/detail/edit-dialog/edit-dialog.comp
         ProfileComponent,
         PopupdialogComponent,
         CardComponent,
-        EditDialogComponent
+        EditDialogComponent,
+        FooterComponent
     ],
     imports: [
         BrowserModule,
