@@ -30,16 +30,16 @@
 
 
 </div>
-<div class="masonry-demo">
+<!--<div class="masonry-demo">-->
 
-<masonry-layout [options]="masonryOptions" [useImagesLoaded]="true">
-    <masonry-item  *ngFor="let picture of masonryImages"  class="masonry-item">
-        <img src="{{picture.picture}}">
-    </masonry-item>
-</masonry-layout>
-<button *ngIf="limit < 100" (click)="showMoreImages()">Show More Images</button>
-<h2 *ngIf="limit >= 100">No More Images</h2>
-</div>
+<!--<masonry-layout [options]="masonryOptions" [useImagesLoaded]="true">-->
+    <!--<masonry-item  *ngFor="let picture of masonryImages"  class="masonry-item">-->
+        <!--<img src="{{picture.picture}}">-->
+    <!--</masonry-item>-->
+<!--</masonry-layout>-->
+<!--<button *ngIf="limit < 100" (click)="showMoreImages()">Show More Images</button>-->
+<!--<h2 *ngIf="limit >= 100">No More Images</h2>-->
+<!--</div>-->
 <router-outlet></router-outlet>
 
 <app-footer></app-footer>
