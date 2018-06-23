@@ -1,4 +1,6 @@
 import {Component, OnInit, AfterViewInit, Input} from '@angular/core';
+import {Router} from "@angular/router";
+import {Post} from "../../../models/Post";
 
 declare var $: any;
 
@@ -10,7 +12,13 @@ declare var $: any;
 })
 export class CardComponent implements OnInit,AfterViewInit {
 
-    title = 'home';
+    @Input()
+    post:Post;
+
+
+    constructor(private router: Router){
+
+    }
 
     ngOnInit(): void {
     }
@@ -19,4 +27,11 @@ export class CardComponent implements OnInit,AfterViewInit {
         $('.icon-test').fadeIn(1000);
         $('h1').hide();
     }
+
+
+    goToDetail(){
+        const url = '/home/detail/' + this.post._id;
+        this.router.navigate([url]);
+    }
+
 }

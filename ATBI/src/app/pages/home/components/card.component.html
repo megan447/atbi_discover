@@ -6,10 +6,12 @@
     <!--<div><a href="">用户名</a></div>-->
     <!--<button>like</button>-->
 <!--</div>-->
-<div class="card">
-    <a href=""><img src="http://pic.sc.chinaz.com/files/pic/pic9/201303/xpic10472.jpg" alt=""></a>
-<p>Beautiful View</p>
-    <p>{{title}}</p>
-<p><a href="">User Name</a></p>
-<button>like</button>
+<div  class="card">
+    <a (click)="goToDetail()">
+        <img src="{{post?.images[0]}}" alt="">
+        <p>Beautiful View</p>
+        <p>{{post?.title}}</p>
+        <p>{{post?.owner?.username}}</p>
+        <button>like</button>
+    </a>
 </div>
