@@ -6,9 +6,7 @@
     "body-parser": "^1.18.3",
     "compression": "^1.7.2",
     "express": "^4.16.3",
-    "imagesloaded": "^4.1.4",
     "jsonwebtoken": "^7.2.1",
-    "masonry-layout": "^4.2.1",
     "mongoose": "^4.13.14"
   }
 }

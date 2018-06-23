@@ -44,7 +44,7 @@
     "velocity-animate": "^1.5.1",
     "zone.js": "^0.8.19",
     "imagesloaded": "^4.1.4",
-    "masonry-layout": "^4.2.1",
+    "masonry-layout": "^4.2.1"
   },
   "devDependencies": {
     "@angular/cli": "^1.7.3",
@@ -66,7 +66,6 @@
     "protractor": "~5.1.2",
     "ts-node": "~4.1.0",
     "tslint": "~5.9.1",
-    "typescript": "~2.5.3",
-
+    "typescript": "~2.5.3"
   }
 }
