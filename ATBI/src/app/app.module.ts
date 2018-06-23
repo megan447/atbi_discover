@@ -13,6 +13,7 @@ import {CommentsComponent} from './pages/detail/comments/comments.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {DetailProfileComponent} from './pages/detail/profile/detail-profile.component';
 import {ProfileComponent} from "./pages/profile/profile.component";
+import {StripHtmlPipe} from "./pages/profile/StripHtmlPipe";
 import {MatDialogModule} from '@angular/material';
 import {PopupdialogComponent} from './pages/detail/popupdialog/popupdialog.component';
 import {MatButtonModule} from '@angular/material';
@@ -25,6 +26,7 @@ import {CardComponent} from "./pages/home/components/card.component";
 import {SharedComponentModule} from "./sharedComponents/sharedComponentsModule";
 import {AuthenticationService} from "./globalServices/authentication.service";
 import {APP_CONFIG, AppConfig} from "./app.config";
+
 import { NgZorroAntdModule } from 'ng-zorro-antd';
 import { EditDialogComponent } from './pages/detail/edit-dialog/edit-dialog.component';
 import {FooterComponent} from "./footer.component";
@@ -47,6 +49,7 @@ import {FooterComponent} from "./footer.component";
         ProfileComponent,
         PopupdialogComponent,
         CardComponent,
+        StripHtmlPipe,
         EditDialogComponent,
         FooterComponent
     ],

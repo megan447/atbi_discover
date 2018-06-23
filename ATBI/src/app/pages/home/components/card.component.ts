@@ -10,11 +10,7 @@ declare var $: any;
 })
 export class CardComponent implements OnInit,AfterViewInit {
 
-
-    @Input()
-    title: string;
-    @Input()
-    post: any;
+    title = 'home';
 
     ngOnInit(): void {
     }
