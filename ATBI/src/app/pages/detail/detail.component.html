@@ -4,9 +4,9 @@
         <div class="col-md-8">
             <app-instruction *ngIf="post" [content]="post?.content" [images]="post?.images" ></app-instruction>
         </div>
-        <!--<div class="col-md-4">-->
-            <!--<app-detail-profile *ngIf="post" [post]="post"></app-detail-profile>-->
-        <!--</div>-->
+        <div class="col-md-4">
+            <app-detail-profile *ngIf="post" [post]="post"></app-detail-profile>
+        </div>
 
     </div>
     <div class="row">

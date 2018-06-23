@@ -6,6 +6,7 @@ import {DetailService} from "./detail.service";
 import {PopupdialogComponent} from "./popupdialog/popupdialog.component";
 import {MatDialog} from '@angular/material';
 import {EditDialogComponent} from "./edit-dialog/edit-dialog.component";
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -16,7 +17,8 @@ import {EditDialogComponent} from "./edit-dialog/edit-dialog.component";
 })
 export class DetailComponent implements OnInit {
 
-    constructor(private authService: AuthenticationService,
+    constructor(private router: Router,
+        private authService: AuthenticationService,
                 private detailService: DetailService,
                 public dialog: MatDialog) {
     }
@@ -27,8 +29,8 @@ export class DetailComponent implements OnInit {
 
 
     ngOnInit(): void {
-
-        this.detailService.getBy_id('5b22db8b66654f3064d55743').subscribe(
+        const detail_id = this.router.url.split('/')[3];
+        this.detailService.getBy_id(detail_id).subscribe(
             response => {
                 if (response.success) {
                     //get result from server and give the value to post

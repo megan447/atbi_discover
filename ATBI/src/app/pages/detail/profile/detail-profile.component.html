@@ -3,7 +3,7 @@
       <div class="card">
           <ul class="list-group list-group-flush">
               <li class="list-group-item">Author</li>
-              <li class="list-group-item"><img src="http://placehold.it/60x40" alt=""><span>Ai lv Xing</span></li>
+              <li class="list-group-item" ><img src="{{post.owner.imageUrl}}" alt=""><a (click)="goToProfile()">{{post.owner.username}}</a></li>
               <li class="list-group-item">
                   <div class="row">
                       <div class="col-md">
