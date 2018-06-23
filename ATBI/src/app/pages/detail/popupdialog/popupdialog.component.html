@@ -1,36 +1,42 @@
-<!--<button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear">-->
-  <!--{{!isLinear ? 'Enable linear mode' : 'Disable linear mode'}}-->
-<!--</button>-->
 <script src="popupdialog.component.spec.ts"></script>
-<form  #f="ngForm" >
 <mat-horizontal-stepper #stepper>
   <mat-step>
       <ng-template matStepLabel>Write your article</ng-template>
-      <!--<mat-form-field>-->
-        <!--<textarea-->
-                <!--rows="4"-->
-                <!--cols="40"-->
-                <!--matInput-->
-                <!--placeholder="Share your colorful life"-->
-                <!--ngModel-->
-                <!--name="article"></textarea>-->
-      <!--</mat-form-field>-->
-      <app-ngx-editor [(ngModel)]="content" [placeholder]="'Enter text here...'" [spellcheck]="true" name="article">
+      <app-ngx-editor [(ngModel)]="editorContent"
+                      [config]="editorConfig"
+                      >
       </app-ngx-editor>
       <div>
         <button class="btn btn-success" matStepperNext type="button">Next</button>
       </div>
   </mat-step>
   <mat-step>
-      <ng-template matStepLabel>Upload Pictures</ng-template>
-          <image-upload
-                        (uploadFinished)="onUploadFinished($event)"
-                        ></image-upload>
+      <!--<ng-template matStepLabel>Upload Pictures</ng-template>-->
+          <!--<image-upload-->
+                        <!--(uploadFinished)="onUploadFinished($event)"-->
+                        <!--&gt;</image-upload>-->
+      <div class="clearfix">
+          <nz-upload
+                  nzAction="https://jsonplaceholder.typicode.com/posts/"
+                  nzListType="picture-card"
+                  [(nzFileList)]="fileList"
+                  [nzBeforeUpload]="beforeUpload"
+                  [nzShowButton]="fileList.length < 8"
+                  [nzPreview]="handlePreview"
+                  (nzChange)="handleChange($event)">
+              <i class="anticon anticon-plus"></i>
+              <div class="ant-upload-text">Upload</div>
+          </nz-upload>
+          <nz-modal [nzVisible]="previewVisible" [nzContent]="modalContent" [nzFooter]="null" (nzOnCancel)="previewVisible=false">
+              <ng-template #modalContent>
+                  <img [src]="previewImage" [ngStyle]="{ 'width': '100%' }" />
+              </ng-template>
+          </nz-modal>
+      </div>
       <div>
         <button mat-button matStepperPrevious class="btn btn-warning" type="button">Back</button>
         <button mat-button matStepperNext class="btn btn-success" type="button" (click)="onSubmitClick()">Submit</button>
       </div>
   </mat-step>
 </mat-horizontal-stepper>
-</form>
 

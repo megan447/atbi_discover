@@ -1,12 +1,12 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-2"></div>
-        <div class="col-md-6">
-            <app-instruction></app-instruction>
+        <div class="col-md-8">
+            <app-instruction *ngIf="post" [content]="post?.content" [images]="post?.images" ></app-instruction>
         </div>
-        <div class="col-md-4">
-            <app-detail-profile *ngIf="post" [post]="post"></app-detail-profile>
-        </div>
+        <!--<div class="col-md-4">-->
+            <!--<app-detail-profile *ngIf="post" [post]="post"></app-detail-profile>-->
+        <!--</div>-->
 
     </div>
     <div class="row">
@@ -14,6 +14,10 @@
         <div class="col-md-5">
             <app-comment-component *ngIf="post" [object_id]="post?._id"
                                    [owner]="post?.owner"></app-comment-component>
+        </div>
+        <div class="col-md-2">
+            <button (click)="openPostDialog()">New Post</button>
+            <button (click)="openEditDialog()">Edit This Article</button>
         </div>
     </div>
 </div>

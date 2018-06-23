@@ -1,7 +1,8 @@
 const express = require('express');
 const router = express.Router();
-let postController = require('../controllers/postController');
 
+let postController = require('../controllers/postController');
+let checkAuthenticated = require('../services/checkAuthenticated');
 /**
  * @api {get} post/getAll get all posts
  * @apiSampleRequest http://localhost:5555/api/post/getAll
@@ -20,7 +21,7 @@ let postController = require('../controllers/postController');
  *       "posts": [{...},{...},{...}]
  *     }
  */
-router.get('/getAll', postController.getAll);
+router.get('/getAll',postController.getAll);
 
 /**
  * @api {get} /post/getByUser getByUser
@@ -102,8 +103,7 @@ router.get('/getById', postController.getById);
 *       "result": true
 *     }
  */
-router.post('/add', postController.add);
-
+router.post('/add', checkAuthenticated, postController.add);
 
 
 /**
@@ -155,5 +155,6 @@ router.post('/delete', postController.delete);
  *       "result": true
  *     }
  */
+
 router.post('/update', postController.update);
 module.exports = router;

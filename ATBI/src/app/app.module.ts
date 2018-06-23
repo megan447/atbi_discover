@@ -9,7 +9,6 @@ import {AppRoutingModule} from "./route.module";
 import {InstructionComponent} from "./pages/detail/instruction/instruction.component";
 import {DetailComponent} from "./pages/detail/detail.component";
 import {HomeComponent} from "./pages/home/home.component";
-import {CarouselComponent} from './pages/detail/instruction/carousel/carousel.component';
 import {CommentsComponent} from './pages/detail/comments/comments.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {DetailProfileComponent} from './pages/detail/profile/detail-profile.component';
@@ -26,10 +25,12 @@ import {ImageUploadModule} from 'angular2-image-upload';
 import {CardComponent} from "./pages/home/components/card.component";
 import {SharedComponentModule} from "./sharedComponents/sharedComponentsModule";
 import {AuthenticationService} from "./globalServices/authentication.service";
-import {NgbPaginationConfig} from "@ng-bootstrap/ng-bootstrap";
 import {APP_CONFIG, AppConfig} from "./app.config";
 
 import { NgZorroAntdModule } from 'ng-zorro-antd';
+import { EditDialogComponent } from './pages/detail/edit-dialog/edit-dialog.component';
+import {FooterComponent} from "./footer.component";
+
 /** register language package ** /
  import { registerLocaleData } from '@angular/common';
  import en from '@angular/common/locales/en';
@@ -43,13 +44,14 @@ import { NgZorroAntdModule } from 'ng-zorro-antd';
         InstructionComponent,
         DetailComponent,
         HomeComponent,
-        CarouselComponent,
         CommentsComponent,
         DetailProfileComponent,
         ProfileComponent,
         PopupdialogComponent,
         CardComponent,
-        StripHtmlPipe
+        StripHtmlPipe,
+        EditDialogComponent,
+        FooterComponent
     ],
     imports: [
         BrowserModule,
@@ -70,10 +72,11 @@ import { NgZorroAntdModule } from 'ng-zorro-antd';
         HttpClientModule
     ],
     entryComponents: [
-        PopupdialogComponent
+        PopupdialogComponent,
+        EditDialogComponent
     ],
     providers: [
-        HttpClient, AuthenticationService, NgbPaginationConfig,
+        HttpClient, AuthenticationService,
         {
             provide: APP_CONFIG,
             useValue: AppConfig

@@ -35,6 +35,7 @@ module.exports = {
 
     add: function (req, res) {
         let user = req.decodedUser;
+        console.log(user);
         let post = new Post();
         let postData = req.body;
         post.status = 1;
