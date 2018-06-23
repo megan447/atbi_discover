@@ -2,7 +2,9 @@ let Post = require('../models/Post');// get our mongoose model
 
 module.exports = {
     getAll: function (req, res) {
-        Post.find({}, function (err, results) {
+        Post.find({}).
+        populate('owner').
+        exec(function (err, results) {
             if (results) {
                 return res.json({success: true, result: results});
             } else {
@@ -13,7 +15,9 @@ module.exports = {
 
     getById: function (req, res) {
         let id = req.query._id;
-        Post.findOne({_id: id}, function (err, result) {
+        Post.findOne({_id: id}).
+            populate('owner').
+            exec(function (err, result) {
             if (result) {
                 return res.json({success: true, result: result});
             } else {
@@ -24,7 +28,9 @@ module.exports = {
 
     getByUser: function (req, res) {
         let id = req.query._id;
-        Post.find({owner: id}, function (err, result) {
+        Post.find({owner: id}).
+            populate('owner').
+            exec(function (err, result) {
             if (result) {
                 return res.json({success: true, result: result});
             } else {
