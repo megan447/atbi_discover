@@ -1,12 +1,13 @@
-import {Component, OnInit,Inject} from '@angular/core';
-import {MAT_DIALOG_DATA,MatDialogRef} from '@angular/material';
+import {Component, OnInit, Inject} from '@angular/core';
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {Post} from "../../../models/Post";
 import {NzMessageService, UploadFile} from 'ng-zorro-antd';
+import {assign} from "rxjs/util/assign";
 
 @Component({
-  selector: 'app-edit-dialog',
-  templateUrl: './edit-dialog.component.html',
-  styleUrls: ['./edit-dialog.component.scss']
+    selector: 'app-edit-dialog',
+    templateUrl: './edit-dialog.component.html',
+    styleUrls: ['./edit-dialog.component.scss']
 })
 export class EditDialogComponent implements OnInit {
 
@@ -39,47 +40,61 @@ export class EditDialogComponent implements OnInit {
         "toolbar": [
             ["bold", "italic", "underline", "strikeThrough"],
             ["fontName", "fontSize"],
-            ["justifyLeft", "justifyCenter","justifyFull"],
+            ["justifyLeft", "justifyCenter", "justifyFull"],
             ["cut", "copy", "delete", "removeFormat", "undo", "redo"],
             ["horizontalLine", "orderedList", "unorderedList"],
 
         ]
     };
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any,
-              public dialogRef: MatDialogRef<EditDialogComponent>,
-              private msg: NzMessageService) {
+    constructor(@Inject(MAT_DIALOG_DATA) public data: any,
+                public dialogRef: MatDialogRef<EditDialogComponent>,
+                private msg: NzMessageService) {
 
-              this.updatePost = this.data.post;
-              this.originPost = this.data.post;
-
-              for(let i in this.data.post.images) {
-                  this.newFileList.push({
-                      uid: i,
-                      name: 'xxx.png',
-                      status: 'done',
-                      url: this.data.post.images[i]
-                  })
-              }
-
-              this.fileList = this.fileList.concat(this.newFileList);
-
-              // this.fileList = this.fileList.concat(this.data.post.images);
-              // this.editorContent = this.data.post.content;
-              // this.fileList = this.fileList.concat(this.data.post.images);
-              // console.log(this.editorContent, this.fileList);
-
-  }
+        this.originPost = this.data.post;
+        // this.updatePost = Object.assign({}, this.originPost);
+        this.updatePost = {...this.originPost};
 
 
-  ngOnInit() {
-    // document.getElementById('title').innerHTML = this.title;
+        for (let i in this.data.post.images) {
+            this.newFileList.push({
+                uid: i,
+                name: 'xxx.png',
+                status: 'done',
+                url: this.data.post.images[i]
+            })
+        }
 
-  }
+        this.fileList = this.fileList.concat(this.newFileList);
+
+        // this.fileList = this.fileList.concat(this.data.post.images);
+        // this.editorContent = this.data.post.content;
+        // this.fileList = this.fileList.concat(this.data.post.images);
+        // console.log(this.editorContent, this.fileList);
+
+    }
+
+
+    ngOnInit() {
+        // document.getElementById('title').innerHTML = this.title;
+
+    }
+
     handlePreview = (file: UploadFile) => {
         this.previewImage = file.url || file.thumbUrl;
         this.previewVisible = true;
     };
+
+    onImageRemoved = (file) => {
+        console.log('file', file.file);
+        let url = file.file.url || file.file.response.url || '';
+        if (file.type === 'removed') {
+            this.updatePost.images.filter(imageUrl => imageUrl !== url);
+            return true
+        }
+        console.log(this.updatePost.images);
+    };
+
 
     beforeUpload = (file: File) => {
         const isJPG = file.type === 'image/jpeg';
@@ -114,14 +129,16 @@ export class EditDialogComponent implements OnInit {
     }
 
     onSubmitClick(): void {
-        if(this.updatePost.content === this.originPost.content
-            || this.updatePost.images === this.originPost.images ) {
+        console.log(this.updatePost.images, this.originPost.images);
+        if (this.updatePost.content === this.originPost.content
+            && this.updatePost.images === this.originPost.images) {
             this.dialogRef.close(undefined);
             return;
         }
+
+        console.log(this.updatePost, this.originPost);
         // this.onAdd.emit(this.post);
         this.dialogRef.close(this.updatePost);
-        console.log(this.updatePost, this.originPost);
     }
 
 }

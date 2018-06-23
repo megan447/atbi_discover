@@ -3,6 +3,7 @@ import {MatDialog} from '@angular/material';
 import { PopupdialogComponent } from '../popupdialog/popupdialog.component';
 import {Post} from "../../../models/Post";
 import {DetailService} from "../detail.service";
+import {Router} from "@angular/router";
 
 @Component({
     selector: 'app-detail-profile',
@@ -20,12 +21,17 @@ export class DetailProfileComponent implements OnInit {
     dialogResult = '';
 
     constructor(public dialog: MatDialog,
-                public detailService: DetailService) {
+                public detailService: DetailService,
+                private router: Router) {
     }
 
     ngOnInit() {
     }
 
+    goToProfile(){
+        const url = '/home/profile/' + this.post.owner._id;
+        this.router.navigate([url]);
+    }
     openDialog() {
         let dialogRef = this.dialog.open(PopupdialogComponent, {
             width: "80%",
