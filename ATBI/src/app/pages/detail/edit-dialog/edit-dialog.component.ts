@@ -10,7 +10,8 @@ import {NzMessageService, UploadFile} from 'ng-zorro-antd';
 })
 export class EditDialogComponent implements OnInit {
 
-    post: Post;
+    updatePost: Post;
+    originPost: Post;
     previewImage = '';
     previewVisible = false;
     loading = false;
@@ -22,6 +23,7 @@ export class EditDialogComponent implements OnInit {
             url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png'
         }
     ];
+    newFileList = [];
     editorConfig = {
         "editable": true,
         "spellcheck": true,
@@ -48,8 +50,21 @@ export class EditDialogComponent implements OnInit {
               public dialogRef: MatDialogRef<EditDialogComponent>,
               private msg: NzMessageService) {
 
-              this.post = this.data.post;
+              this.updatePost = this.data.post;
+              this.originPost = this.data.post;
 
+              for(let i in this.data.post.images) {
+                  this.newFileList.push({
+                      uid: i,
+                      name: 'xxx.png',
+                      status: 'done',
+                      url: this.data.post.images[i]
+                  })
+              }
+
+              this.fileList = this.fileList.concat(this.newFileList);
+
+              // this.fileList = this.fileList.concat(this.data.post.images);
               // this.editorContent = this.data.post.content;
               // this.fileList = this.fileList.concat(this.data.post.images);
               // console.log(this.editorContent, this.fileList);
@@ -93,16 +108,20 @@ export class EditDialogComponent implements OnInit {
             // Get this url from response in real world.
             this.getBase64(info.file.originFileObj, (img: string) => {
                 this.loading = false;
-                this.post.images.push("https://i2.wp.com/beebom.com/wp-content/uploads/2016/01/Reverse-Image-Search-Engines-Apps-And-Its-Uses-2016.jpg?resize=640%2C426");
+                this.updatePost.images.push("https://i2.wp.com/beebom.com/wp-content/uploads/2016/01/Reverse-Image-Search-Engines-Apps-And-Its-Uses-2016.jpg?resize=640%2C426");
             });
         }
     }
 
     onSubmitClick(): void {
-
+        if(this.updatePost.content === this.originPost.content
+            || this.updatePost.images === this.originPost.images ) {
+            this.dialogRef.close(undefined);
+            return;
+        }
         // this.onAdd.emit(this.post);
-        this.dialogRef.close(this.post);
-        console.log(this.post);
+        this.dialogRef.close(this.updatePost);
+        console.log(this.updatePost, this.originPost);
     }
 
 }

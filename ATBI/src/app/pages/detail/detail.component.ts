@@ -56,9 +56,11 @@ export class DetailComponent implements OnInit {
         );
 
         dialogRef.afterClosed().subscribe(result => {
-
-            console.log('closed:', result);
-            this.detailService.updatePost(result).subscribe(response => {
+            if(!result) {
+                return;
+            }
+            console.log('closed:',result);
+            this.detailService.updatePost(result).subscribe(response=>{
                 console.log(response);
                 if (response.success) {
                 }
@@ -79,8 +81,8 @@ export class DetailComponent implements OnInit {
         );
 
         dialogRef.afterClosed().subscribe(result => {
-            if (!result.content) {
-                return;
+            if(!result) {
+                return
             }
             console.log('closed:', result);
             this.detailService.addPost(result).subscribe(response => {
