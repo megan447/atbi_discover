@@ -1,60 +1,18 @@
-*{
-  margin: 0;
-  padding: 0;
-  background-color:lightgray;
-}
-
-ul{
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-between;
-  align-items: center;
-  height: 5vh;
-  background-color: black;
-  margin: 1rem;
-  li{
-    height: 10px;
-    width: 20px;
-    display: inline;
-    margin: 0 2rem;
-    a{
-      text-decoration: none;
-      background-color: black;
-      color: white;
-      font-family:fantasy;
-      font-size: 1rem;
-    }
-    a:hover{
-      color: pink;
-    }
-  }
-}
-
-
-.logo{
-  width: 100vw;
-  display: block;
-  margin: 2rem 1rem 1rem 5rem;
-}
-.box{
-  position: relative;
-  display: flex;
-  flex-flow: row wrap;
-  align-content: center;
-  justify-content: space-around;
-  margin: 1rem;
-  padding: 1rem;
-  border-top: 1px solid grey;
-}
-
-.foot{
-  position: relative;
-  display: block;
-  background-color: black;
-  height: 5vh;
-  width: auto;
+.masonry-demo {
   text-align: center;
-  font-family: cursive;
-  color: white;
-  margin: 2rem;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.masonry-item {
+  margin-bottom: 20px;
+  background-color: #f1f1f1;
+  background-size: cover;
+  width: 340px;
+}
+
+.masonry-item img {
+  width: 100%;
+  height: 100%;
+  min-height: 340px;
 }
