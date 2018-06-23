@@ -2,10 +2,11 @@
 import {Component, Inject, Input, OnInit} from '@angular/core';
 import {ProfileService} from "./profile.service";
 import {AuthenticationService} from "../../globalServices/authentication.service";
-import {APP_CONFIG, IAppConfig, NotificationSetting} from "../../app.config";
-import {ActivatedRoute} from "@angular/router";
+import {APP_CONFIG, IAppConfig} from "../../app.config";
+import {ActivatedRoute, Router} from "@angular/router";
 import {User} from "../../models/User";
 import {Post} from "../../models/Post";
+
 declare var $: any;
 
 
@@ -27,6 +28,8 @@ export class ProfileComponent implements OnInit {
     profileImgUrl;
     private viewCount = 8;
     private VIEWPERPAGE = 8;
+    public href: string = "";
+    private owner_id;
 
     posts: any;
     postsView: any;
@@ -42,67 +45,25 @@ export class ProfileComponent implements OnInit {
     constructor(@Inject(APP_CONFIG) private config: IAppConfig,
                 private route: ActivatedRoute,
                 private profileService: ProfileService,
-                private authService: AuthenticationService) {
+                private authService: AuthenticationService,
+                private router: Router) {
         this.urlPrefix = this.config.cloudPrefix;
     }
 
-    // notification setting.
-    public notifyOption = NotificationSetting.notificationCarpoolSetting;
-
-
     ngOnInit() {
-        // this.posts =
-        //     [{title: 'seafood', content: 'It is a good shellfish and very tasty.'},
-        //         {title: 'seafood', content: 'It is a good shellfish and very tasty.',imgUrls:[]},
-        //         {title: 'seafood', content: 'It is a good shellfish and very tasty.',imgUrls:[]},
-        //         {title: 'seafood', content: 'It is a good shellfish and very tasty.',imgUrls:[]},
-        //         {title: 'seafood', content: 'It is a good shellfish and very tasty.',imgUrls:[]},
-        //         {title: 'seafood', content: 'It is a good shellfish and very tasty.',imgUrls:[]},
-        //         {title: 'seafood', content: 'It is a good shellfish and very tasty.',imgUrls:[]},
-        //         {title: 'seafood', content: 'It is a good shellfish and very tasty.',imgUrls:[]},
-        //         {title: 'seafood', content: 'It is a good shellfish and very tasty.',imgUrls:[]},
-        //         {title: 'seafood', content: 'It is a good shellfish and very tasty.',imgUrls:[]},
-        //         {title: 'seafood', content: 'It is a good shellfish and very tasty.',imgUrls:[]},
-        //         {title: 'seafood', content: 'It is a good shellfish and very tasty.',imgUrls:[]},
-        //         {title: 'seafood', content: 'It is a good shellfish and very tasty.',imgUrls:[]},
-        //         {title: 'seafood', content: 'It is a good shellfish and very tasty.',imgUrls:[]},
-        //         {title: 'seafood', content: 'It is a good shellfish and very tasty.',imgUrls:[]},
-        //         {title: 'seafood', content: 'It is a good shellfish and very tasty.',imgUrls:[]},
-        //         {title: 'seafood', content: 'It is a good shellfish and very tasty.',imgUrls:[]},
-        //         {title: 'seafood', content: 'It is a good shellfish and very tasty.',imgUrls:[]},
-        //         {title: 'seafood', content: 'It is a good shellfish and very tasty.',imgUrls:[]},
-        //         {title: 'seafood', content: 'It is a good shellfish and very tasty.',imgUrls:[]},
-        //         {title: 'seafood', content: 'It is a good shellfish and very tasty.',imgUrls:[]}];
-        // this.postsView = this.posts.slice(0, this.viewCount);
-
-        // if(this.authService.getCurrentUser()==null){
-        //     this.profileService.loadProfilePosts("5b1498edf9277a06de5034ad")
-        //         .subscribe(
-        //             response => {
-        //                 if (response.success) {
-        //                     //console.log(response.result);
-        //                     this.posts = this.postsView = <Post[]>response.result;
-        //                     this.name = this.currentUser.username;
-        //
-        //                 }
-        //             },
-        //             error => {
-        //                 // this._notificationsService.warn(
-        //                 //     'Error',
-        //                 //     error.message
-        //                 // );
-        //             });
-        // }
-        // else {
-            this.currentUser = this.authService.getCurrentUser();
-            this.profileImgUrl = this.urlPrefix + this.currentUser.imageUrl;
-            console.log(this.currentUser);
+        this.href = this.router.url;
+       // console.log(this.href.split("/")[3]);
+        this.owner_id = this.href.split("/")[3];
+        this.currentUser = this.authService.getCurrentUser();
+        this.profileImgUrl = this.urlPrefix + this.currentUser.imageUrl;
+       // console.log(this.currentUser);
+        if(this.owner_id){
             this.loadProfilePosts();
-        //}
+        }
     }
 
     private loadProfilePosts() {
-        this.profileService.loadProfilePosts(this.currentUser._id)
+        this.profileService.loadProfilePosts(this.owner_id)
             .subscribe(
                 response => {
                     if (response.success) {
@@ -111,14 +72,9 @@ export class ProfileComponent implements OnInit {
                         this.name = this.currentUser.username;
 
                     }
-                },
-                error => {
-                    // this._notificationsService.warn(
-                    //     'Error',
-                    //     error.message
-                    // );
                 });
     }
+
 
      deleteProfilePosts(id) {
         this.profileService.deleteProfilePosts(id)
