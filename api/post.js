@@ -3,8 +3,6 @@ const router = express.Router();
 
 let postController = require('../controllers/postController');
 let checkAuthenticated = require('../services/checkAuthenticated');
-
-let checkAuthenticated = require('../services/checkAuthenticated');
 /**
  * @api {get} post/getAll get all posts
  * @apiSampleRequest http://localhost:5555/api/post/getAll
