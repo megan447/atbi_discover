@@ -14,12 +14,26 @@ $size2:1rem;
   -webkit-border-radius: $radius;
   border-radius: $radius;
 }
+.top_bg{
+  width: 100%;
+  height: $size2*20;
+  background: url("../../../assets/images/profile/mytop_bg.jpg") no-repeat center bottom;
+  background-size: cover;
+  filter:brightness(60%);
+  position: absolute;
+  z-index: 1;
+}
 .jumbotron{
-  padding: $size2*2 $size1*4 0 $size1*4;
-  background: $lightgray;
-  margin-top: $size2;
-  h1{
-    color: $darkgray;
+  padding: $size2*8 $size1*4 0 $size1*4;
+  @include border-radius(0);
+  position: relative;
+  background: none;
+  z-index: 10;
+  h1,span,p{
+    color: $white;
+  }
+  div{
+    padding: 0;
   }
 }
 .img-responsive {
@@ -29,6 +43,7 @@ $size2:1rem;
 }
 .img-circle{ @include border-radius(50%);}
 .img-circle1{ @include border-radius(2%);}
+.clear_margin{margin: 0 !important;}
 .btn{width:100%; padding: 0 $size1*3; border: 1px solid $darkgray; background: $lightgray; color: $darkgray;}
 .row{margin: $size2*2 0; line-height: inherit;}
 #set_icon{
@@ -36,6 +51,9 @@ $size2:1rem;
     width: 35%;
     height: 35%;
   }
+}
+.portrait{
+  max-width: 70%;
 }
 .caption{
   h3{
@@ -155,7 +173,15 @@ $size2:1rem;
 }
 @media (min-width: 767.98px) {
   .jumbotron{
-    padding: $size2*2 $size2*4;
-    background: $lightgray;
+    padding: $size2*8 $size2*4 $size2*2 $size2*4;
+  }
+  .top_bg{
+    height: $size2*20;
   }
 }
+@media (min-width: 576px){
+  .jumbotron {
+    padding: $size2*8 $size2*4 $size2*2 $size2*4;
+  }
+}
+

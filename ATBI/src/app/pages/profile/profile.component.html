@@ -1,37 +1,38 @@
 <!--main-->
+<div class="top_bg"></div>
 <div class="container">
     <div class="jumbotron" *ngIf="postOwner">
         <div class="row">
-            <div class="col-lg-3 col-md-3 col-sm-12 col-12 ">
+            <div class="col-lg-1 col-md-1 col-sm-12 col-12 ">
                 <a href="#">
-                    <img src="{{ postOwner?.imageUrl }}" class="img-circle img-responsive center-horizontal">
+                    <img src="{{ postOwner?.imageUrl }}" class="portrait img-circle img-responsive center-horizontal">
                 </a>
             </div>
             <div class="col-lg-9 col-md-9 col-sm-12 col-12 ">
-                <div class="row">
+                <div class="row clear_margin">
                     <div class="col-lg-2 col-md-2 col-sm-12 col-12 ">
                         <span><h1>{{postOwner?.username}}</h1></span>
                     </div>
-                    <div class="col-lg-5 col-md-5 col-sm-12 col-12">
-                        <button class="btn btn-info btn-xs center-vertical" ng-click="go('home/detail/1')"><strong>{{btnEdit}}</strong>
-                        </button>
-                    </div>
-                    <div id="set_icon" class="col-lg-2 col-md-2">
-                        <a href="#" class="img-responsive center-vertical"><img src="assets/images/profile/setting.png"></a>
-                    </div>
+                    <!--<div class="col-lg-5 col-md-5 col-sm-12 col-12">-->
+                        <!--<button class="btn btn-info btn-xs center-vertical" ng-click="go('home/detail/1')"><strong>{{btnEdit}}</strong>-->
+                        <!--</button>-->
+                    <!--</div>-->
+                    <!--<div id="set_icon" class="col-lg-2 col-md-2">-->
+                        <!--<a href="#" class="img-responsive center-vertical"><img src="assets/images/profile/setting.png"></a>-->
+                    <!--</div>-->
                 </div>
-                <div class="row">
-                    <div class="col-lg-3 col-md-3 col-sm-12 col-12">
+                <div class="row clear_margin">
+                    <div class="col-lg-3 col-md-3 col-sm-4 col-4">
                         <span>{{postCount}} posts</span>
                     </div>
-                    <div class="col-lg-3 col-md-3 col-sm-12 col-12">
+                    <div class="col-lg-3 col-md-3 col-sm-4 col-4">
                         <span>{{followerCount}} followers</span>
                     </div>
-                    <div class="col-lg-3 col-md-3 col-sm-12 col-12">
+                    <div class="col-lg-3 col-md-3 col-sm-4 col-4">
                         <span>{{followingCount}} following </span>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row clear_margin">
                     <div class="col">
                         <p><strong>{{postOwner.username}}</strong> {{intro}}</p>
                     </div>
@@ -39,7 +40,7 @@
             </div>
         </div>
     </div>
-    <!--pic list-->
+<!--pic list-->
     <div class="row">
         <div class="col-lg-3 col-md-3 col-sm-12 col-12 " *ngFor="let item of postsView; let i = index">
             <div class="thumbnail">
