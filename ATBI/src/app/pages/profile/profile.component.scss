@@ -1,9 +1,9 @@
 /* Page Document */
 $black: black;
 $white: #fff;
-$lightgray: #fafafa;
+$lightgray: #f5f5f5;
 $darkgray:#262626;
-$cornflowerblue: cornflowerblue;
+$cornflowerblue: #007bff;
 $darkslateblue: darkslateblue;
 $size1:1vm;
 $size2:1rem;
@@ -24,13 +24,15 @@ $size2:1rem;
   z-index: 1;
 }
 .jumbotron{
-  padding: $size2*8 $size1*4 0 $size1*4;
+  margin: $size2*5 0 0 0;
+  padding: $size2*10 $size1*4 0 $size1*1;
   @include border-radius(0);
   position: relative;
   background: none;
   z-index: 10;
   h1,span,p{
     color: $white;
+    margin: 0;
   }
   div{
     padding: 0;
@@ -44,8 +46,21 @@ $size2:1rem;
 .img-circle{ @include border-radius(50%);}
 .img-circle1{ @include border-radius(2%);}
 .clear_margin{margin: 0 !important;}
-.btn{width:100%; padding: 0 $size1*3; border: 1px solid $darkgray; background: $lightgray; color: $darkgray;}
-.row{margin: $size2*2 0; line-height: inherit;}
+.row{
+  margin: $size2*2 0;
+  line-height: inherit;
+  .thumbnail{
+    background: white;
+    p{text-align: left; padding-left:0;}
+  }
+}
+.btn{
+  width:100%;
+  padding: 0 $size1*3;
+  border: 1px solid $darkgray;
+  background: $lightgray;
+  color: $darkgray;
+}
 #set_icon{
   img{
     width: 35%;
@@ -53,9 +68,10 @@ $size2:1rem;
   }
 }
 .portrait{
-  max-width: 70%;
+  max-width: 50%;
 }
 .caption{
+  padding:0 $size2 $size2 $size2;
   h3{
     color: $cornflowerblue;
   }
@@ -68,6 +84,7 @@ $size2:1rem;
 .center-horizontal{
   position: relative;
   left: 50%;
+  top: 50%;
   transform: translateX(-50%);
 }
 .thumbnail{
@@ -89,8 +106,9 @@ $size2:1rem;
       z-index: 1;
     }
   }
-  p{
-    margin-bottom: $size2*2;
+  &:hover{
+    background: black;
+    box-shadow: 0px 2px 7px #aaaaaa;
   }
 }
 
@@ -104,7 +122,7 @@ $size2:1rem;
     opacity: 0.7;
   }
 }
-.icon_opacity{opacity: 1;}
+.icon_opacity{opacity:1;}
 .caption{
   margin-top: $size2;
   h3{color: $cornflowerblue;}
@@ -118,13 +136,13 @@ $size2:1rem;
 }
 .backimg{
   z-index: -10;
-  @include border-radius(2%);
+  @include border-radius(2% 2% 0 0);
   background-size:cover;
 }
 .more{
   width:100%;
   text-align: center;
-  margin-bottom: $size2;
+  margin: $size2 0;
   a{
     width:15%;
     margin: 0 auto;
@@ -133,12 +151,12 @@ $size2:1rem;
     img{
       width: fit-content;
       margin: 0 auto;
+      opacity: 0;
     }
     &:hover {
-      color: white;
-      background: darkslateblue;
+      color: $cornflowerblue;
       text-decoration: none;
-      border-radius: 3% 3% 40% 40%;
+      img{opacity: 1.0;}
     }
   }
 }
@@ -150,8 +168,10 @@ $size2:1rem;
   right: 10px;
   display: none;
   border: none;
-  color: $white;
-  background: $cornflowerblue;
+  color: white;
+  z-index: 20;
+  background:url("../../../assets/images/profile/rocket1.png") no-repeat center center;
+  background-size: 100%;
   @include border-radius(50%);
   a{
     &:hover{
@@ -159,29 +179,52 @@ $size2:1rem;
     }
   }
 }
-// Small devices (landscape phones, less than 768px)
-@media (max-width: 767.98px) {
-  #set_icon{ visibility: hidden; height: 2vh;}
+#btn_set{
+  width: $size2*3;
+  height: $size2*3;
+  position: relative;
+  left: 98%;
+  background:url("../../../assets/images/profile/setting.png") no-repeat center center $darkgray;
+  background-size: 50%;
+  color: white;
+  border: none;
+  @include border-radius(50%);
+  a{
+    &:hover{border: none;}
+  }
+}
+// Small devices (landscape phones, less than 767px)
+@media only screen and (max-width: 767px) {
   .row {
-    h1{text-align: center; margin:$size1 0;}
+    h1{padding: $size2 0;}
+    h1,p{text-align: center; padding-left: $size2;}
+    .thumbnail p{text-align: left; padding-left:0;}
+    .txt_center{text-align: center;}
   }
+  #btn_set{visibility: hidden;}
+  .top_bg{height: $size2*34;}
+}
+// Small devices (landscape phones, less than 350px)
+@media only screen and (max-width: 321px) {
+  .top_bg{height: $size2*32;}
+}
+
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+  #set_icon{visibility: hidden;}
+  h1,p{padding-left: $size2;}
   .more{
-    a{
-      width:30%;
-    }
+    a{width:30%;}
   }
-}
-@media (min-width: 767.98px) {
   .jumbotron{
-    padding: $size2*8 $size2*4 $size2*2 $size2*4;
+    margin: $size2*5 0 0 0;
+    padding: $size2*10 $size2*4 0 $size1*1;
+    padding-bottom: 0!important;
   }
-  .top_bg{
-    height: $size2*20;
-  }
+  .top_bg{height: $size2*20;}
+  #btn_set{bottom: $size2*2;}
+  .portrait{max-width: 80%;}
 }
-@media (min-width: 576px){
-  .jumbotron {
-    padding: $size2*8 $size2*4 $size2*2 $size2*4;
-  }
-}
+
 
