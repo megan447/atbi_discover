@@ -37,7 +37,6 @@ export class ProfileComponent implements OnInit {
     urlPrefix: string;
 
 
-
     private currentUser: User;
 
     constructor(@Inject(APP_CONFIG) private config: IAppConfig,
@@ -50,13 +49,16 @@ export class ProfileComponent implements OnInit {
 
     ngOnInit() {
         this.href = this.router.url;
-       // console.log(this.href.split("/")[3]);
+        // console.log(this.href.split("/")[3]);
         this.owner_id = this.href.split("/")[3];
         console.log(this.owner_id);
-        this.currentUser = this.authService.getCurrentUser();
+        this.authService.getCurrentUser().subscribe(user => {
+            if (user)
+                this.currentUser = user;
+        });
         // this.profileImgUrl = "";
-       // console.log(this.currentUser);
-        if(this.owner_id){
+        // console.log(this.currentUser);
+        if (this.owner_id) {
             this.loadProfilePosts();
         }
     }
@@ -79,7 +81,7 @@ export class ProfileComponent implements OnInit {
     }
 
 
-     deleteProfilePosts(id) {
+    deleteProfilePosts(id) {
         this.profileService.deleteProfilePosts(id)
             .subscribe(
                 response => {
