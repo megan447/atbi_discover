@@ -29,4 +29,16 @@ module.exports = {
             }
         });
     },
+
+    getByUserId: function (req, res) {
+        let id = req.query._id;
+        User.findOne({_id: id}, 'imageUrl username', function (err, result) {
+            if (result) {
+                console.log(result);
+                return res.json({success: true, result: result});
+            } else {
+                return res.json({success: false, result: null});
+            }
+        });
+    },
 };

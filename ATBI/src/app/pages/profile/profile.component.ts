@@ -61,6 +61,7 @@ export class ProfileComponent implements OnInit {
         // this.profileImgUrl = "";
         // console.log(this.currentUser);
         if (this.owner_id) {
+            this.getPostOwnerInfo();
             this.loadProfilePosts();
         }
     }
@@ -70,12 +71,18 @@ export class ProfileComponent implements OnInit {
             .subscribe(
                 response => {
                     if (response.success) {
-                        //console.log(response.result);
                         this.posts = this.postsView = <Post[]>response.result;
-                        if (this.posts.length > 0) {
-                            this.postOwner = this.posts[0].owner;
-                        }
-                        // this.name = this.currentUser.username;
+                    }
+                });
+    }
+
+    private getPostOwnerInfo() {
+        this.profileService.getPostOwnerInfo(this.owner_id)
+            .subscribe(
+                response => {
+                    if (response.success) {
+                        console.log(response.result);
+                        this.postOwner = response.result;
                     }
                 });
     }

@@ -17,6 +17,10 @@ export class ProfileService {
         return this.http.get(this.config.apiEndpoint + '/post/getByUser?_id=' + id);
     }
 
+    public getPostOwnerInfo(id: string): Observable<any> {
+        return this.http.get(this.config.apiEndpoint + '/auth/getByUserId?_id=' + id);
+    }
+
     public deleteProfilePosts(id: string): Observable<any> {
         //return this.http.get(this.config.apiEndpoint + '/post/delete?_id=' + id);
 
