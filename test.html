@@ -1,0 +1,85 @@
+<div class="profile-page-wrapper">
+    <div class="profile-page-header">
+        <div class="header-bg"></div>
+        <div class="header-detail">
+            <div class="container">
+                <div class="row justify-content-left">
+                    <div class="col-12 first-row">
+                        <div class="avatar">
+                            <img *ngIf="postOwner?.imageUrl;else loading" src="{{ postOwner?.imageUrl }}"
+                                 class="portrait img-circle img-responsive center-horizontal">
+                            <ng-template #loading>
+                                <nz-spin></nz-spin>
+                            </ng-template>
+                        </div>
+
+                        <div class="user-info">
+                            <h2 class="user-name">{{postOwner?.username}}</h2>
+                            <h6 class="user-description">{{intro}}</h6>
+                        </div>
+                        <div class="user-info-cols">
+                            <div class="user-info-col col-first">
+                                <h6>
+                                    Posts
+                                </h6>
+                                <h6>
+                                    {{postCount}}
+                                </h6>
+                            </div>
+                            <div class="user-info-col col-second">
+                                <h6>
+                                    Followers
+                                </h6>
+                                <h6>
+                                    {{followerCount}}
+                                </h6>
+                            </div>
+                            <div class="user-info-col col-third">
+                                <h6>
+                                    Followings
+                                </h6>
+                                <h6>
+                                    {{followingCount}}
+                                </h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button id="btn_set" title="setting">
+                    <img src="assets/images/profile/setting.png">
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="container posts-wrapper">
+        <div class="row">
+            <div class="col-lg-3 col-md-4 col-sm-12 col-12 " *ngFor="let item of postsView; let i = index">
+                <div class="thumbnail img-circle1">
+                    <div class="backimg"
+                         [ngStyle]="{'background-image': 'url(' + item.images[0] + ')', 'background-size': 'cover'}">
+                        <div class="row img-circle1 hint" *ngIf="currentUser?._id == owner_id">
+                            <a (click)="goToDetail(item._id)">
+                                <img src="assets/images/profile/edit.png" class="img-responsive icon_opacity">
+                            </a>
+                            <a (click)="showDeleteConfirm(item._id)">
+                                <img src="assets/images/profile/trash.png" class="img-responsive icon_opacity">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="caption" ng-app="myApp" ng-controller="namesCtrl">
+                        <h3><a (click)="goToDetail(item._id)">{{item.title.substr(0,21) | striphtml}}</a></h3>
+                        <p><a (click)="goToDetail(item._id)">{{item.content.substr(0,70) | striphtml}}</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-12 more" *ngIf="postsView.length>VIEWPERPAGE">
+                <a (click)="viewMore()">
+                    <span>Show more</span>
+                    <img src="assets/images/profile/dropdown.png">
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
