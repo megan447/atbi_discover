@@ -95,6 +95,11 @@ export class ProfileComponent implements OnInit {
                 });
     }
 
+    goToDetail(id){
+        const url = '/home/detail/' + id;
+        this.router.navigate([url]);
+    }
+
     viewMore() {
         this.viewCount += this.VIEWPERPAGE;
         let currentDisplayItems = this.viewCount;
