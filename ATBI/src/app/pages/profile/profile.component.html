@@ -3,8 +3,12 @@
 <div class="container">
     <div class="jumbotron" *ngIf="owner_id">
         <div class="row clear_margin">
-            <div class="col-lg-1 col-md-1 col-sm-12 col-12">
-                <img src="{{ postOwner?.imageUrl }}" class="portrait img-circle img-responsive center-horizontal">
+            <div class="col-lg-1 col-md-1 col-sm-12 col-12 custom-centered">
+                <img *ngIf="postOwner?.imageUrl;else loading" src="{{ postOwner?.imageUrl }}"
+                     class="portrait img-circle img-responsive center-horizontal">
+                <ng-template #loading>
+                    <nz-spin></nz-spin>
+                </ng-template>
             </div>
             <div class="col-lg-11 col-md-11 col-sm-12 col-12 ">
                 <div class="row clear_margin">
@@ -73,7 +77,7 @@
         </div>
     </div>
     <!--more-->
-    <div class="col-12 more">
+    <div class="col-12 more" *ngIf="postsView.length>VIEWPERPAGE">
         <a (click)="viewMore()">
             <span>Show more</span>
             <img src="assets/images/profile/dropdown.png">

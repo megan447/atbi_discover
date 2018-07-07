@@ -29,7 +29,7 @@ export class ProfileComponent implements OnInit {
     intro: string = 'is a foodie. He likes to know different people from different places.';
 
     private viewCount = 8;
-    private VIEWPERPAGE = 8;
+    VIEWPERPAGE = 8;
     public href: string = "";
     owner_id: string;
     public postOwner: User;
