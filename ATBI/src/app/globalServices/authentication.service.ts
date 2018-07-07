@@ -6,6 +6,7 @@ import {APP_CONFIG, IAppConfig} from "../app.config";
 import {User} from "../models/User";
 import {BehaviorSubject} from "rxjs/BehaviorSubject";
 import {JwtHelperService} from '@auth0/angular-jwt';
+import 'rxjs/add/observable/of';
 
 // this is a global service which provided in app.module
 @Injectable()
@@ -19,7 +20,7 @@ export class AuthenticationService {
         this.initCurrentUser();
     }
 
-    initCurrentUser() {
+    initCurrentUser(): Observable<any> {
         const token = localStorage.getItem('token');
         if (token) {
             this.user = new User();
@@ -28,15 +29,15 @@ export class AuthenticationService {
             this.user.username = tokenParsed._doc.username;
             this.user.imageUrl = tokenParsed.imageUrl;
             this.user._id = tokenParsed._doc._id;
-            this.logged();
+            return Observable.of(this.user);
         } else {
             this.user = null;
-            this.isLoginSubject.next(false);
+            return Observable.of(null);
         }
     }
 
-    getCurrentUser(): User {
-        return this.user;
+    getCurrentUser(): Observable<any> {
+        return this.user ? Observable.of(this.user) : this.initCurrentUser();
     }
 
     getUserAvatar(): string {
