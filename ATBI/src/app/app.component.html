@@ -22,13 +22,11 @@
                     </a>
                 </div>
                 <div class="user-profile-pic">
-                    <img *ngIf="currentUser.imageUrl" src="{{urlPrefix}}{{currentUser.imageUrl}}" class="user-avatar"/>
+                    <img *ngIf="currentUser.imageUrl" src="{{currentUser.imageUrl}}" class="user-avatar"/>
                 </div>
             </ng-template>
         </div>
     </div>
-
-
 </div>
 
 <router-outlet></router-outlet>

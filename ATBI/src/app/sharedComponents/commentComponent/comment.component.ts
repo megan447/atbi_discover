@@ -50,7 +50,10 @@ export class CommentComponent implements OnInit {
 
     ngOnInit() {
         this.createForm();
-        this.currentUser = this.authService.getCurrentUser();
+        this.authService.getCurrentUser().subscribe(user => {
+            if (user)
+                this.currentUser = user;
+        });
         this.loadComments();
     }
 
@@ -82,8 +85,7 @@ export class CommentComponent implements OnInit {
      * add comment at 1st level, no parent(topic) comment
      */
     addComment() {
-        const currentUser = this.authService.getCurrentUser(); // recreate, make sure logged in when the moment that he's posting
-        if (!currentUser) {
+        if (!this.currentUser) {
             // this._notificationsService.warn(
             //     'Login required',
             //     'Please sign in first, Thanks!'
@@ -96,7 +98,7 @@ export class CommentComponent implements OnInit {
             let comment = new Comment();
             comment.content = message;
             comment.object_id = this.object_id;
-            comment.fromUser = currentUser;
+            comment.fromUser = this.currentUser;
             comment.toUser = this.owner;
             this.postComment(comment);
         }
@@ -123,7 +125,7 @@ export class CommentComponent implements OnInit {
             let commentReply = new Comment();
             commentReply.content = value;
             commentReply.object_id = this.object_id;
-            commentReply.fromUser = currentUser;
+            commentReply.fromUser = this.currentUser;
             commentReply.toUser = parentComment.fromUser;
             commentReply.parent = parentComment;
             this.postComment(commentReply);

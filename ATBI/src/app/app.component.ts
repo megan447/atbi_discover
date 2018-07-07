@@ -22,18 +22,12 @@ export class AppComponent implements AfterViewInit, OnInit {
     urlPrefix: string;
 
 
-
     constructor(@Inject(APP_CONFIG) private config: IAppConfig, private authenticationService: AuthenticationService) {
-        this.authenticationService.isLoggedIn().subscribe((value: boolean) => {
-            this.isLogged = value;
-        });
         this.urlPrefix = this.config.cloudPrefix;
     }
 
 
     ngOnInit(): void {
-
-
         this.fakeUserArr = [
             {value: '5b1498edf9277a06de5034ad', viewValue: 'Zlan'},
             {value: '5b149967f9277a06de5034af', viewValue: 'Jhonnie'},
@@ -42,7 +36,13 @@ export class AppComponent implements AfterViewInit, OnInit {
             {value: '5b149a42f9277a06de5034b1', viewValue: 'Echo'},
             {value: '5b149a6af9277a06de5034b2', viewValue: 'ZZhe'},
         ];
-        this.currentUser = this.authenticationService.getCurrentUser();
+        this.authenticationService.getCurrentUser().subscribe(user => {
+            console.log('test', user);
+            if (user) {
+                this.isLogged = true;
+                this.currentUser = user;
+            }
+        });
     }
 
     ngAfterViewInit(): void {
