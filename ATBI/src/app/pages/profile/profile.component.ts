@@ -37,7 +37,6 @@ export class ProfileComponent implements OnInit {
     urlPrefix: string;
 
 
-
     private currentUser: User;
 
     constructor(@Inject(APP_CONFIG) private config: IAppConfig,
@@ -50,13 +49,14 @@ export class ProfileComponent implements OnInit {
 
     ngOnInit() {
         this.href = this.router.url;
-       // console.log(this.href.split("/")[3]);
+        // console.log(this.href.split("/")[3]);
         this.owner_id = this.href.split("/")[3];
         console.log(this.owner_id);
         this.currentUser = this.authService.getCurrentUser();
+        //console.log(this.currentUser._id);
         // this.profileImgUrl = "";
-       // console.log(this.currentUser);
-        if(this.owner_id){
+        // console.log(this.currentUser);
+        if (this.owner_id) {
             this.loadProfilePosts();
         }
     }
@@ -78,24 +78,27 @@ export class ProfileComponent implements OnInit {
                 });
     }
 
-
-     deleteProfilePosts(id) {
-        this.profileService.deleteProfilePosts(id)
-            .subscribe(
-                response => {
-                    if (response.success) {
-                        this.posts = this.postsView = <Post[]>response.result;
-                    }
-                },
-                error => {
-                    // this._notificationsService.warn(
-                    //     'Error',
-                    //     error.message
-                    // );
-                });
+    deleteProfilePosts(id) {
+        if (this.currentUser._id == this.owner_id) {
+            this.profileService.deleteProfilePosts(id)
+                .subscribe(
+                    response => {
+                        if (response.success) {
+                            this.posts = this.postsView = this.posts.filter(post => post._id !== id);
+                        }
+                    },
+                    error => {
+                        // this._notificationsService.warn(
+                        //     'Error',
+                        //     error.message
+                        // );
+                    });
+        } else {
+            alert("sorry you cannot delete");
+        }
     }
 
-    goToDetail(id){
+    goToDetail(id) {
         const url = '/home/detail/' + id;
         this.router.navigate([url]);
     }
