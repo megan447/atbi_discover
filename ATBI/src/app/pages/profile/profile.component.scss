@@ -2,107 +2,134 @@
 $black: black;
 $white: #fff;
 $lightgray: #f5f5f5;
-$darkgray:#262626;
+$darkgray: #262626;
 $cornflowerblue: #007bff;
 $darkslateblue: darkslateblue;
-$size1:1vm;
-$size2:1rem;
+$size1: 1vm;
+$size2: 1rem;
 
-@mixin border-radius($radius){
+@mixin border-radius($radius) {
   -webkit-border-radius: $radius;
   -moz-border-radius: $radius;
   -webkit-border-radius: $radius;
   border-radius: $radius;
 }
-h1,h2,h3,h4{
+
+h1, h2, h3, h4 {
   margin: 0;
   padding: 0;
 }
-.top_bg{
+
+.top_bg {
   width: 100%;
   height: $size2*20;
   background: url("../../../assets/images/profile/mytop_bg.jpg") no-repeat center bottom;
   background-size: cover;
-  filter:brightness(60%);
+  filter: brightness(60%);
   position: absolute;
   z-index: 1;
 }
-.jumbotron{
+
+.jumbotron {
   margin: $size2*5 0 0 0;
   //padding: $size2*10 $size1*4 0 $size1*1;
   @include border-radius(0);
   position: relative;
   background: none;
   z-index: 10;
-  h1,span,p{
+  h1, span, p {
     color: $white;
     margin: 0;
   }
-  div{
+  div {
     padding: 0;
   }
 }
+
 .img-responsive {
   display: block;
   height: auto;
   max-width: 100%;
 }
-.img-circle{ @include border-radius(50%);}
-.img-circle1{ @include border-radius(2%);}
-.clear_margin{margin: 0 !important;}
-.row{
+
+.img-circle {
+  @include border-radius(50%);
+}
+
+.img-circle1 {
+  @include border-radius(2%);
+}
+
+.clear_margin {
+  margin: 0 !important;
+}
+
+.row {
   margin: $size2*2 0;
   line-height: inherit;
-  .thumbnail{
+  .thumbnail {
     background: white;
-    p{text-align: left; padding-left:0;}
+    p {
+      text-align: left;
+      padding-left: 0;
+    }
   }
 }
-.btn{
-  width:100%;
+
+.btn {
+  width: 100%;
   padding: 0 $size1*3;
   border: 1px solid $darkgray;
   background: $lightgray;
   color: $darkgray;
 }
-#set_icon{
-  img{
+
+#set_icon {
+  img {
     width: 35%;
     height: 35%;
   }
 }
-.portrait{
+
+.portrait {
   max-width: 50%;
 }
-.caption{
-  padding:0 $size2 $size2 $size2;
-  h3{
+
+.caption {
+  padding: 0 $size2 $size2 $size2;
+  h3 {
     color: $cornflowerblue;
   }
 }
-.center-vertical{
+
+.center-vertical {
   position: relative;
   top: 50%;
   transform: translateY(-50%);
 }
-.center-horizontal{
+
+.center-horizontal {
   position: relative;
   left: 50%;
   transform: translateX(-50%);
 }
-.thumbnail{
-  p{text-align: left; padding-left:0;}
-  .row{
+
+.thumbnail {
+  p {
+    text-align: left;
+    padding-left: 0;
+  }
+  .row {
     margin: 0;
-    padding:42.5% 0;
+    padding: 42.5% 0;
     z-index: -5;
   }
-  a{
+  a {
     padding: $size2/3 0;
     position: relative;
     left: 45%;
     transform: translateX(-45%);
-    img{
+    img {
       position: relative;
       width: 50%;
       top: 50%;
@@ -110,7 +137,7 @@ h1,h2,h3,h4{
       z-index: 1;
     }
   }
-  &:hover{
+  &:hover {
     background: black;
     box-shadow: 0px 2px 7px #aaaaaa;
   }
@@ -126,32 +153,43 @@ h1,h2,h3,h4{
     opacity: 0.7;
   }
 }
-.icon_opacity{opacity:1;}
-.caption{
+
+.icon_opacity {
+  opacity: 1;
+}
+
+.caption {
   margin-top: $size2;
-  h3{color: $cornflowerblue;}
-  a{
+  h3 {
+    color: $cornflowerblue;
+  }
+  a {
     position: inherit;
     &:hover {
       text-decoration: none;
     }
   }
-  p a{color: $darkgray;}
+  p a {
+    color: $darkgray;
+  }
 }
-.backimg{
+
+.backimg {
+  min-height: 250px;
   z-index: -10;
   @include border-radius(2% 2% 0 0);
-  background-size:cover;
+  background-size: cover;
 }
-.more{
-  width:100%;
+
+.more {
+  width: 100%;
   text-align: center;
   margin: $size2*2 0;
-  a{
+  a {
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    img{
+    img {
       width: fit-content;
       margin: 0 auto;
       opacity: 0;
@@ -159,10 +197,13 @@ h1,h2,h3,h4{
     &:hover {
       color: $cornflowerblue;
       text-decoration: none;
-      img{opacity: 1.0;}
+      img {
+        opacity: 1.0;
+      }
     }
   }
 }
+
 #btn_top {
   width: $size2*3;
   height: $size2*3;
@@ -173,16 +214,17 @@ h1,h2,h3,h4{
   border: none;
   color: white;
   z-index: 20;
-  background:url("../../../assets/images/profile/rocket1.png") no-repeat center center;
+  background: url("../../../assets/images/profile/rocket1.png") no-repeat center center;
   background-size: 100%;
   @include border-radius(50%);
-  a{
-    &:hover{
+  a {
+    &:hover {
       border: none;
     }
   }
 }
-#btn_set{
+
+#btn_set {
   width: $size2*3;
   height: $size2*3;
   position: relative;
@@ -192,12 +234,12 @@ h1,h2,h3,h4{
   color: white;
   border: none;
   @include border-radius(50%);
-  img{
+  img {
     display: block;
     max-width: 70%;
     margin: 0 auto;
   }
-  &:hover{
+  &:hover {
     background: $cornflowerblue;
     border: none;
   }
@@ -214,45 +256,73 @@ h1,h2,h3,h4{
       padding-left: $size2;
     }
     .thumbnail {
-      margin-top: $size2!important;
+      margin-top: $size2 !important;
       p {
-      text-align: left;
-      padding-left: 0;
+        text-align: left;
+        padding-left: 0;
+      }
+    }
+    .txt_center {
+      text-align: center;
     }
   }
-    .txt_center{text-align: center;}
+  #btn_set {
+    visibility: hidden;
+    display: none;
   }
-  #btn_set{visibility: hidden; display: none;}
-  .top_bg{height: $size2*34;}
+  .top_bg {
+    height: $size2*34;
+  }
 }
 
 // Small devices (landscape phones, less than 570-768px)
 @media only screen and (min-width: 560px) and (max-width: 767px) {
-  .top_bg{height: $size2*36 !important;}
-  .thumbnail{margin-bottom: 0!important; padding-bottom:0!important; }
+  .top_bg {
+    height: $size2*36 !important;
+  }
+  .thumbnail {
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+  }
 }
 
 // Small devices (landscape phones, less than 400px)
 @media only screen and (max-width: 400px) {
-  .top_bg{height: $size2*32!important;}
-  .thumbnail{margin-top: 0; padding-bottom:0!important; }
+  .top_bg {
+    height: $size2*32 !important;
+  }
+  .thumbnail {
+    margin-top: 0;
+    padding-bottom: 0 !important;
+  }
 }
-
 
 // Medium devices (landscape tablets, 768px and up)
 @media only screen and (min-width: 768px) {
-  .thumbnail{margin-top: 0;}
-  h1,p{padding-left: $size2;}
-  .more{
-    a{width:30%;}
+  .thumbnail {
+    margin-top: 0;
   }
-  .jumbotron{
+  h1, p {
+    padding-left: $size2;
+  }
+  .more {
+    a {
+      width: 30%;
+    }
+  }
+  .jumbotron {
     margin: $size2*5 0 0 0;
-    padding-bottom: 0!important;
+    padding-bottom: 0 !important;
   }
-  .top_bg{height: $size2*20!important;}
-  #btn_set{bottom: $size2*2;}
-  .portrait{max-width: 80%;}
+  .top_bg {
+    height: $size2*20 !important;
+  }
+  #btn_set {
+    bottom: $size2*2;
+  }
+  .portrait {
+    max-width: 80%;
+  }
 }
 
 

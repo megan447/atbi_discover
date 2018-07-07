@@ -6,6 +6,8 @@ import {APP_CONFIG, IAppConfig} from "../../app.config";
 import {ActivatedRoute, Router} from "@angular/router";
 import {User} from "../../models/User";
 import {Post} from "../../models/Post";
+import {NzModalService} from 'ng-zorro-antd';
+
 
 declare var $: any;
 
@@ -29,7 +31,7 @@ export class ProfileComponent implements OnInit {
     private viewCount = 8;
     private VIEWPERPAGE = 8;
     public href: string = "";
-    private owner_id;
+    owner_id: string;
     public postOwner: User;
 
     posts: any;
@@ -37,13 +39,14 @@ export class ProfileComponent implements OnInit {
     urlPrefix: string;
 
 
-    private currentUser: User;
+    currentUser: User;
 
     constructor(@Inject(APP_CONFIG) private config: IAppConfig,
                 private route: ActivatedRoute,
                 private profileService: ProfileService,
                 private authService: AuthenticationService,
-                private router: Router) {
+                private router: Router,
+                private modalService: NzModalService) {
         this.urlPrefix = this.config.cloudPrefix;
     }
 
@@ -51,8 +54,9 @@ export class ProfileComponent implements OnInit {
         this.href = this.router.url;
         // console.log(this.href.split("/")[3]);
         this.owner_id = this.href.split("/")[3];
-        console.log(this.owner_id);
-        this.currentUser = this.authService.getCurrentUser();
+        this.authService.getCurrentUser().subscribe(user => {
+            this.currentUser = user;
+        });
         //console.log(this.currentUser._id);
         // this.profileImgUrl = "";
         // console.log(this.currentUser);
@@ -68,14 +72,24 @@ export class ProfileComponent implements OnInit {
                     if (response.success) {
                         //console.log(response.result);
                         this.posts = this.postsView = <Post[]>response.result;
-                        console.log("aasdasdasd", this.posts);
-                        this.postOwner = this.posts[0].owner;
-                        console.log("aasdasdasd", this.postOwner);
-
+                        if (this.posts.length > 0) {
+                            this.postOwner = this.posts[0].owner;
+                        }
                         // this.name = this.currentUser.username;
-
                     }
                 });
+    }
+
+    showDeleteConfirm(id): void {
+        this.modalService.confirm({
+            nzTitle: 'Are you sure delete this task?',
+            nzContent: '<b style="color: red;">Some descriptions</b>',
+            nzOkText: 'Yes',
+            nzOkType: 'danger',
+            nzOnOk: () => this.deleteProfilePosts(id),
+            nzCancelText: 'No',
+            nzOnCancel: () => console.log('Cancel')
+        });
     }
 
     deleteProfilePosts(id) {

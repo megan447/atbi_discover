@@ -1,7 +1,7 @@
 <!--main-->
 <div class="top_bg"></div>
 <div class="container">
-    <div class="jumbotron" *ngIf="postOwner">
+    <div class="jumbotron" *ngIf="owner_id">
         <div class="row clear_margin">
             <div class="col-lg-1 col-md-1 col-sm-12 col-12">
                 <img src="{{ postOwner?.imageUrl }}" class="portrait img-circle img-responsive center-horizontal">
@@ -12,38 +12,38 @@
                         <span><h1>{{postOwner?.username}}</h1></span>
                     </div>
                     <!--<div class="col-lg-5 col-md-5 col-sm-12 col-12">-->
-                        <!--<button class="btn btn-info btn-xs center-vertical" ng-click="go('home/detail/1')"><strong>{{btnEdit}}</strong>-->
-                        <!--</button>-->
+                    <!--<button class="btn btn-info btn-xs center-vertical" ng-click="go('home/detail/1')"><strong>{{btnEdit}}</strong>-->
+                    <!--</button>-->
                     <!--</div>-->
                     <!--<div id="set_icon" class="col-lg-2 col-md-2">-->
-                        <!--<a href="#" class="img-responsive center-vertical"><img src="assets/images/profile/setting.png"></a>-->
+                    <!--<a href="#" class="img-responsive center-vertical"><img src="assets/images/profile/setting.png"></a>-->
                     <!--</div>-->
                 </div>
                 <!--<div class="row clear_margin">-->
-                    <!--<div class="col-lg-3 col-md-3 col-sm-4 col-4">-->
-                        <!--<span>{{postCount}} posts</span>-->
-                    <!--</div>-->
-                    <!--<div class="col-lg-3 col-md-3 col-sm-4 col-4">-->
-                        <!--<span>{{followerCount}} followers</span>-->
-                    <!--</div>-->
-                    <!--<div class="col-lg-3 col-md-3 col-sm-4 col-4">-->
-                        <!--<span>{{followingCount}} following </span>-->
-                    <!--</div>-->
+                <!--<div class="col-lg-3 col-md-3 col-sm-4 col-4">-->
+                <!--<span>{{postCount}} posts</span>-->
+                <!--</div>-->
+                <!--<div class="col-lg-3 col-md-3 col-sm-4 col-4">-->
+                <!--<span>{{followerCount}} followers</span>-->
+                <!--</div>-->
+                <!--<div class="col-lg-3 col-md-3 col-sm-4 col-4">-->
+                <!--<span>{{followingCount}} following </span>-->
+                <!--</div>-->
                 <!--</div>-->
                 <div class="row clear_margin">
-                        <p><strong>{{postOwner.username}}</strong>&nbsp;{{intro}}</p>
+                    <p><strong>{{postOwner.username}}</strong>&nbsp;{{intro}}</p>
                 </div>
             </div>
         </div>
         <div class="row">
-                <div class="col-lg-2 col-md-2 col-sm-4 col-4 txt_center">
-                    <span>{{postCount}}<br>posts</span>
-                </div>
-                <div class="col-lg-2 col-md-2 col-sm-4 col-4 txt_center">
-                    <span>{{followerCount}}<br>followers</span></div>
-                <div class="col-lg-2 col-md-2 col-sm-4 col-4 txt_center">
-                    <span>{{followingCount}}<br>following</span>
-                </div>
+            <div class="col-lg-2 col-md-2 col-sm-4 col-4 txt_center">
+                <span>{{postCount}}<br>posts</span>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-4 col-4 txt_center">
+                <span>{{followerCount}}<br>followers</span></div>
+            <div class="col-lg-2 col-md-2 col-sm-4 col-4 txt_center">
+                <span>{{followingCount}}<br>following</span>
+            </div>
         </div>
         <!--setting-->
         <button id="btn_set" title="setting">
@@ -56,16 +56,16 @@
             <div class="thumbnail img-circle1">
                 <div class="backimg"
                      [ngStyle]="{'background-image': 'url(' + item.images[0] + ')', 'background-size': 'cover'}">
-                    <div class="row img-circle1 hint">
+                    <div class="row img-circle1 hint" *ngIf="currentUser?._id == owner_id">
                         <a (click)="goToDetail(item._id)">
                             <img src="assets/images/profile/edit.png" class="img-responsive icon_opacity">
                         </a>
-                        <a (click)="deleteProfilePosts(item._id)">
+                        <a (click)="showDeleteConfirm(item._id)">
                             <img src="assets/images/profile/trash.png" class="img-responsive icon_opacity">
                         </a>
                     </div>
                 </div>
-                <div class="caption" ng-app="myApp" ng-controller="namesCtrl" >
+                <div class="caption" ng-app="myApp" ng-controller="namesCtrl">
                     <h3><a (click)="goToDetail(item._id)">{{item.title.substr(0,21) | striphtml}}</a></h3>
                     <p><a (click)="goToDetail(item._id)">{{item.content.substr(0,70) | striphtml}}</a></p>
                 </div>
