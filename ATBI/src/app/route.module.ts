@@ -3,13 +3,12 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {CommonModule} from '@angular/common';
 import {RouterModule, Routes} from '@angular/router';
 import {NgMaterialModule} from './ngMaterial.module';
-import {DetailComponent} from "./pages/detail/detail.component";
 import {ProfileComponent} from "./pages/profile/profile.component";
 
 const routes: Routes = [
-    {path: 'home', loadChildren: './pages/home/home.module#HomeModule'},
-    {path: 'home/detail/:id', component: DetailComponent},
-    {path: 'home/profile/:id', component: ProfileComponent},
+    {path: 'home', loadChildren: 'app/pages/home/home.module#HomeModule'},
+    {path: 'profile/:id', component: ProfileComponent},
+    {path: 'home/detail', loadChildren: 'app/pages/detail/detail.module#DetailModule' },
 ];
 
 @NgModule({

@@ -1,9 +1,9 @@
 // config.js
 const env = process.env.NODE_ENV || "dev";
 const dev = {
-    port: 5555,
+    port: 3002,
     database: process.env.DB_DEV,
-    secret: process.env.TOKEN_SECRET,
+    secret: process.env.TOKEN_SECRET || "driversprite",
     environment: "development",
 };
 

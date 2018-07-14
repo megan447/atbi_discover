@@ -2,9 +2,6 @@ import {Component, OnInit, AfterViewInit} from '@angular/core';
 import {MasonryOptions} from "../../sharedComponents/masonry/masonry-options";
 import {DiscoveryService} from "./discovery.service";
 
-declare var $: any;
-
-
 @Component({
     selector: 'app-home-page',
     templateUrl: './home.component.html',
