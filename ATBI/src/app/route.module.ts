@@ -23,5 +23,4 @@ const routes: Routes = [
     declarations: [],
     providers: []
 })
-export class AppRoutingModule {
-}
+export class AppRoutingModule {}
