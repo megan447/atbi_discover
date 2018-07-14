@@ -16,7 +16,7 @@ import {NgxEditorModule} from 'ngx-editor';
 @NgModule({
     imports: [
         FormsModule,
-        NgZorroAntdModule.forRoot(),
+        NgZorroAntdModule,
         NgMaterialModule,
         CommonModule,
         SharedComponentModule,
