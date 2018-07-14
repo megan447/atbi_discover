@@ -3,118 +3,118 @@
       <div class="card">
           <ul class="list-group list-group-flush">
               <li class="list-group-item">Author</li>
-              <li class="list-group-item" ><img src="{{post.owner.imageUrl}}" alt=""><a (click)="goToProfile()">{{post.owner.username}}</a></li>
-              <li class="list-group-item">
-                  <div class="row">
-                      <div class="col-md">
-                          <div>biji</div>
-                          <div>1</div>
-                      </div>
-                      <div class="col-md">
-                          <div>fensi</div>
-                          <div>188</div>
-                      </div>
-                      <div class="col-md">
-                          <div style="font-size: x-small">zan,sc</div>
-                          <div>1614</div>
-                      </div>
-                  </div>
-              </li>
+              <li class="list-group-item" ><img src="{{post.owner.imageUrl}}" alt="" width="42" height="42"><a (click)="goToProfile()"><br><br>{{post.owner.username}}</a></li>
+              <!--<li class="list-group-item">-->
+                  <!--<div class="row">-->
+                      <!--<div class="col-md">-->
+                          <!--<div>biji</div>-->
+                          <!--<div>1</div>-->
+                      <!--</div>-->
+                      <!--<div class="col-md">-->
+                          <!--<div>fensi</div>-->
+                          <!--<div>188</div>-->
+                      <!--</div>-->
+                      <!--<div class="col-md">-->
+                          <!--<div style="font-size: x-small">zan,sc</div>-->
+                          <!--<div>1614</div>-->
+                      <!--</div>-->
+                  <!--</div>-->
+              <!--</li>-->
           </ul>
       </div>
   </div>
-    <div class="row">
-        <div class="list-group">
-            <div class="list-group-item list-group-item-action">相关笔记</div>
-            <a href="#" class="list-group-item list-group-item-action">
-                <div class="row">
-                    <div class="col">
-                        <img src="../../">
-                    </div>
-                    <div class="col">
-                        7平米小窝，结束几年租房生活，一个人的开心
-                    </div>
-                </div>
-            </a>
-            <a href="#" class="list-group-item list-group-item-action">
-                <div class="row">
-                    <div class="col">
-                        <img src="http://placehold.it/80x60">
-                    </div>
-                    <div class="col">
-                        7平米小窝，结束几年租房生活，一个人的开心
-                    </div>
-                </div>
-            </a>
-            <a href="#" class="list-group-item list-group-item-action">
-                <div class="row">
-                    <div class="col-3">
-                        <img src="http://placehold.it/80x60">
-                    </div>
-                    <div class="col">
-                        7平米小窝，结束几年租房生活，一个人的开心
-                    </div>
-                </div>
-            </a>
-                <button style="font-size: x-small; text-align: center"
-                        class="list-group-item list-group-item-action btn btn-primary"
-                        type="button" data-toggle="collapse" data-target="#collapseExample"
-                        aria-expanded="false" aria-controls="collapseExample">
-                    查看更多
-                </button>
-                <button
-                        mat-raised-button (click)="openDialog()"
-                    style="font-size: x-small; text-align: center">
+    <!--<div class="row">-->
+        <!--<div class="list-group">-->
+            <!--<div class="list-group-item list-group-item-action">相关笔记</div>-->
+            <!--<a href="#" class="list-group-item list-group-item-action">-->
+                <!--<div class="row">-->
+                    <!--<div class="col">-->
+                        <!--<img src="../../">-->
+                    <!--</div>-->
+                    <!--<div class="col">-->
+                        <!--7平米小窝，结束几年租房生活，一个人的开心-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</a>-->
+            <!--<a href="#" class="list-group-item list-group-item-action">-->
+                <!--<div class="row">-->
+                    <!--<div class="col">-->
+                        <!--<img src="http://placehold.it/80x60">-->
+                    <!--</div>-->
+                    <!--<div class="col">-->
+                        <!--7平米小窝，结束几年租房生活，一个人的开心-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</a>-->
+            <!--<a href="#" class="list-group-item list-group-item-action">-->
+                <!--<div class="row">-->
+                    <!--<div class="col-3">-->
+                        <!--<img src="http://placehold.it/80x60">-->
+                    <!--</div>-->
+                    <!--<div class="col">-->
+                        <!--7平米小窝，结束几年租房生活，一个人的开心-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</a>-->
+                <!--<button style="font-size: x-small; text-align: center"-->
+                        <!--class="list-group-item list-group-item-action btn btn-primary"-->
+                        <!--type="button" data-toggle="collapse" data-target="#collapseExample"-->
+                        <!--aria-expanded="false" aria-controls="collapseExample">-->
+                    <!--查看更多-->
+                <!--</button>-->
+                <!--<button-->
+                        <!--mat-raised-button (click)="openDialog()"-->
+                    <!--style="font-size: x-small; text-align: center">-->
 
-                edit
-                </button>
-            <div class="collapse" id="collapseExample">
-                <a href="#" class="list-group-item list-group-item-action">
-                    <div class="row">
-                        <div class="col-3">
-                            <img src="{{post.images[0]}}" class="img-fluid">
-                        </div>
-                        <div class="col">
-                            7平米小窝，结束几年租房生活，一个人的开心111
-                        </div>
-                    </div>
-                </a>
-                <a href="#" class="list-group-item list-group-item-action">
-                    <div class="row">
-                        <div class="col-3">
-                            <img src="http://placehold.it/80x60" class="img-fluid">
-                        </div>
-                        <div class="col">
-                            7平米小窝，结束几年租房生活，一个人的开心
-                        </div>
-                    </div>
-                </a>
-                <a href="#" class="list-group-item list-group-item-action">
-                    <div class="row">
-                        <div class="col-3">
-                            <img src="http://placehold.it/80x60" class="img-fluid">
-                        </div>
-                        <div class="col">
-                            7平米小窝，结束几年租房生活，一个人的开心
-                        </div>
-                    </div>
-                </a>
-                <a href="#" class="list-group-item list-group-item-action">
-                    <div class="row">
-                        <div class="col-3">
-                            <img src="http://placehold.it/80x60" class="img-fluid">
-                        </div>
-                        <div class="col">
-                            7平米小窝，结束几年租房生活，一个人的开心
-                        </div>
-                    </div>
-                </a>
-                <button
-                        style="font-size: x-small; text-align: center">
-                    edit
-                </button>
-            </div>
+                <!--edit-->
+                <!--</button>-->
+            <!--<div class="collapse" id="collapseExample">-->
+                <!--<a href="#" class="list-group-item list-group-item-action">-->
+                    <!--<div class="row">-->
+                        <!--<div class="col-3">-->
+                            <!--<img src="{{post.images[0]}}" class="img-fluid">-->
+                        <!--</div>-->
+                        <!--<div class="col">-->
+                            <!--7平米小窝，结束几年租房生活，一个人的开心111-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</a>-->
+                <!--<a href="#" class="list-group-item list-group-item-action">-->
+                    <!--<div class="row">-->
+                        <!--<div class="col-3">-->
+                            <!--<img src="http://placehold.it/80x60" class="img-fluid">-->
+                        <!--</div>-->
+                        <!--<div class="col">-->
+                            <!--7平米小窝，结束几年租房生活，一个人的开心-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</a>-->
+                <!--<a href="#" class="list-group-item list-group-item-action">-->
+                    <!--<div class="row">-->
+                        <!--<div class="col-3">-->
+                            <!--<img src="http://placehold.it/80x60" class="img-fluid">-->
+                        <!--</div>-->
+                        <!--<div class="col">-->
+                            <!--7平米小窝，结束几年租房生活，一个人的开心-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</a>-->
+                <!--<a href="#" class="list-group-item list-group-item-action">-->
+                    <!--<div class="row">-->
+                        <!--<div class="col-3">-->
+                            <!--<img src="http://placehold.it/80x60" class="img-fluid">-->
+                        <!--</div>-->
+                        <!--<div class="col">-->
+                            <!--7平米小窝，结束几年租房生活，一个人的开心-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</a>-->
+                <!--<button-->
+                        <!--style="font-size: x-small; text-align: center">-->
+                    <!--edit-->
+                <!--</button>-->
+            <!--</div>-->
 
-        </div>
-    </div>
+        <!--</div>-->
+    <!--</div>-->
 </div>

@@ -1,7 +1,6 @@
 let User = require('../models/User');// get our mongoose model
 let jwt = require('jsonwebtoken'); // used to create, sign, and letify tokens
 let config = require('../config/config');
-
 module.exports = {
     fakeLogin: function (req, res) {
         let id = req.body._id;
@@ -13,7 +12,7 @@ module.exports = {
                 user.username = result.username;
                 user.imageUrl = userObj.imageUrl;
 
-                let token = jwt.sign(user, config.secret(), {
+                let token = jwt.sign(user, config.secret, {
                     expiresIn: 12 * 3600// expires in seconds
                 });
 
