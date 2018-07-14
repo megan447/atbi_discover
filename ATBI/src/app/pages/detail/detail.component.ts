@@ -90,7 +90,7 @@ export class DetailComponent implements OnInit {
             }
             console.log('closed:', result);
             this.detailService.addPost(result).subscribe(response => {
-                console.log('jieshuoshi:', response);
+                console.log('jieshushi:', response);
                 if (response.success) {
                 }
             });

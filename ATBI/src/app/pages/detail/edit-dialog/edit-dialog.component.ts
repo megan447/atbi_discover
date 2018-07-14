@@ -23,7 +23,7 @@ export class EditDialogComponent implements OnInit {
             status: 'done',
             url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png'
         }
-    ];
+    ]
     newFileList = [];
     editorConfig = {
         "editable": true,
