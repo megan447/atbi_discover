@@ -43,7 +43,7 @@ import {FooterComponent} from "./footer.component";
         AppComponent,
         InstructionComponent,
         DetailComponent,
-        HomeComponent,
+        // HomeComponent,
         CommentsComponent,
         DetailProfileComponent,
         ProfileComponent,
