@@ -18,7 +18,7 @@ import {Router} from "@angular/router";
 export class DetailComponent implements OnInit {
 
     constructor(private router: Router,
-        private authService: AuthenticationService,
+                private authService: AuthenticationService,
                 private detailService: DetailService,
                 public dialog: MatDialog) {
     }
@@ -35,7 +35,10 @@ export class DetailComponent implements OnInit {
                 if (response.success) {
                     //get result from server and give the value to post
                     this.post = response.result;
-                    this.currentUser = this.authService.getCurrentUser();
+                    this.authService.getCurrentUser().subscribe(user => {
+                        if (user)
+                            this.currentUser = user;
+                    });
                     console.log(this.post);
                 }
             }
@@ -57,11 +60,11 @@ export class DetailComponent implements OnInit {
         );
 
         dialogRef.afterClosed().subscribe(result => {
-            if(!result) {
+            if (!result) {
                 return;
             }
-            console.log('closed:',result);
-            this.detailService.updatePost(result).subscribe(response=>{
+            console.log('closed:', result);
+            this.detailService.updatePost(result).subscribe(response => {
                 console.log(response);
                 if (response.success) {
                 }
@@ -82,7 +85,7 @@ export class DetailComponent implements OnInit {
         );
 
         dialogRef.afterClosed().subscribe(result => {
-            if(!result) {
+            if (!result) {
                 return
             }
             console.log('closed:', result);

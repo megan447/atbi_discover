@@ -9,9 +9,11 @@
 <div  class="card">
     <a (click)="goToDetail()">
         <img src="{{post?.images[0]}}" alt="">
-        <p>Beautiful View</p>
-        <p>{{post?.title}}</p>
-        <p>{{post?.owner?.username}}</p>
-        <button>like</button>
+        <div class="text">
+            <p>Beautiful View</p>
+            <p class="title">{{post?.title}}</p>
+            <p class="user">{{post?.owner?.username}}</p>
+            <button>like</button>
+        </div>
     </a>
 </div>

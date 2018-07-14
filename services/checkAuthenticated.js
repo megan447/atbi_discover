@@ -16,7 +16,7 @@ module.exports = function (req, res, next) {
     }
     // decode token
     // verifies secret and checks exp
-    jwt.verify(token, config.secret(), function (err, decoded) {
+    jwt.verify(token, config.secret, function (err, decoded) {
         if (err) {
             return res.send({valid: false, success: false, message: 'Failed to authenticate token, login expires'});
         } else {

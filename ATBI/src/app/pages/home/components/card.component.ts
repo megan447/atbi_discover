@@ -7,8 +7,8 @@ declare var $: any;
 
 @Component({
     selector: 'app-home-card',
-    templateUrl: './card.component.html',
-    styleUrls: ['./card.component.scss']
+    templateUrl: './card.component2.html',
+    styleUrls: ['./card.component2.scss']
 })
 export class CardComponent implements OnInit,AfterViewInit {
 
@@ -31,6 +31,11 @@ export class CardComponent implements OnInit,AfterViewInit {
 
     goToDetail(){
         const url = '/home/detail/' + this.post._id;
+        this.router.navigate([url]);
+    }
+
+    goToProfile(){
+        const url = '/home/profile/' + this.post.owner._id;
         this.router.navigate([url]);
     }
 
