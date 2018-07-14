@@ -11,6 +11,7 @@ import {NgMaterialModule} from '../../ngMaterial.module';
 import {CommonModule} from '@angular/common';
 import {SharedComponentModule} from '../../sharedComponents/sharedComponentsModule';
 import {NgxEditorModule} from 'ngx-editor';
+import {CommentsComponent} from "./comments/comments.component";
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import {NgxEditorModule} from 'ngx-editor';
         InstructionComponent,
         PopupdialogComponent,
         DetailProfileComponent,
-        DetailComponent
+        DetailComponent,
+        CommentsComponent
     ],
     entryComponents: [
         PopupdialogComponent,

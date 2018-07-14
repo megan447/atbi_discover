@@ -5,6 +5,11 @@ import {RouterModule, Routes} from '@angular/router';
 import {NgMaterialModule} from './ngMaterial.module';
 
 const routes: Routes = [
+    {
+        path: '',
+        redirectTo: '/home',
+        pathMatch: 'full',
+    },
     {path: 'home', loadChildren: 'app/pages/home/home.module#HomeModule'},
     {path: 'home/profile', loadChildren: 'app/pages/profile/profile.module#ProfileModule'},
     {path: 'home/detail', loadChildren: 'app/pages/detail/detail.module#DetailModule'},
