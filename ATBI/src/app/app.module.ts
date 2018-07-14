@@ -11,8 +11,8 @@ import {DetailComponent} from "./pages/detail/detail.component";
 import {CommentsComponent} from './pages/detail/comments/comments.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {DetailProfileComponent} from './pages/detail/profile/detail-profile.component';
-import {ProfileComponent} from "./pages/profile/profile.component";
-import {StripHtmlPipe} from "./pages/profile/StripHtmlPipe";
+// import {ProfileComponent} from "./pages/profile/profile.component";
+// import {StripHtmlPipe} from "./pages/profile/StripHtmlPipe";
 import {MatDialogModule} from '@angular/material';
 import {PopupdialogComponent} from './pages/detail/popupdialog/popupdialog.component';
 import {MatButtonModule} from '@angular/material';
@@ -44,9 +44,9 @@ import {FooterComponent} from "./footer.component";
         // HomeComponent,
         CommentsComponent,
         DetailProfileComponent,
-        ProfileComponent,
+        // ProfileComponent,
         PopupdialogComponent,
-        StripHtmlPipe,
+        // StripHtmlPipe,
         EditDialogComponent,
         FooterComponent
     ],
