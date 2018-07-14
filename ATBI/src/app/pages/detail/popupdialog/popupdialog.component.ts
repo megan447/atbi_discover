@@ -101,6 +101,7 @@ export class PopupdialogComponent implements OnInit {
         this.post.content = this.editorContent;
         // this.onAdd.emit(this.post);
         this.dialogRef.close(this.post);
+        //when click,close the window and tranfer the data to father component
         console.log('from popup',this.post);
     }
 }
