@@ -1,30 +1,23 @@
-let state = {
-	database: null,
-	secret: null,
-	bucketName: null,
-	environment: null,
-};
-
-exports.init = function (port = 3000, done) {
-    state.database ="mongodb://atbi_footprint:OJ8LjLmQoc4v1sBr@cluster0-shard-00-00-evmg6.mongodb.net:27017,cluster0-shard-00-01-evmg6.mongodb.net:27017,cluster0-shard-00-02-evmg6.mongodb.net:27017/footprint?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin";
-    state.secret = "driversprite";
-    state.environment = "development";
-    done();
-};
-
-exports.secret = function () {
-	return state.secret
-};
-
-exports.database = function () {
-	return state.database
+// config.js
+const env = process.env.NODE_ENV || "dev";
+const dev = {
+    port: 5555,
+    database: process.env.DB_DEV,
+    secret: process.env.TOKEN_SECRET,
+    environment: "development",
 };
 
 
-exports.environment = function () {
-	return state.environment
+const prod = {
+    port: 3002,
+    database: process.env.DB_PROD,
+    secret: process.env.TOKEN_SECRET,
+    environment: "product",
 };
 
-exports.bucketName = function () {
-	return state.bucketName
+const config = {
+    dev,
+    prod
 };
+
+module.exports = config[env];
