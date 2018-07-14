@@ -9,8 +9,8 @@ export interface IAppConfig {
 }
 
 export const AppConfig: IAppConfig = {
-    apiEndpoint: "http://localhost:3000/api",
-    serverPoint: "http://localhost:3000",
+    apiEndpoint: "http://localhost:3002/api",
+    serverPoint: "http://localhost:3002",
     cloudPrefix: "//res.cloudinary.com/dx55oi3py/image/upload/"
 };
 
