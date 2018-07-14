@@ -1,0 +1,178 @@
+.card {
+  width: 250px;
+  display: block;
+  background-color: #fff;
+  //margin: 0 0 30px 0;
+  //-webkit-box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+ // box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+  //border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+  text-decoration: none;
+  cursor: pointer;
+
+  &:hover{
+    opacity: 0.8;
+    background-color: darkgrey;
+  }
+
+  .card-info {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    display: block;
+    text-decoration: none;
+
+    .card-href {
+      display: inline-block;
+
+      .lazyload-block {
+        overflow: hidden;
+
+        .lazyload-container {
+          position: relative;
+          filter: blur(30px);
+          filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius='50', MakeShadow=false);
+          -webkit-transition: filter 0.7s ease;
+          -moz-transition: filter 0.7s ease;
+          -o-transition: filter 0.7s ease;
+          -ms-transition: filter 0.7s ease;
+          transition: filter 0.7s ease;
+          min-height: 187px;
+        }
+        .lazyload-container.loading {
+          filter: blur(15px);
+        }
+        .lazyload-container.loaded,
+        .lazyload-container.fail {
+          filter: none;
+        }
+        .lazyload-container.fail {
+          background-color: #000;
+        }
+
+        //    0.56 <= width:height <= 1.5
+        .lazyload-image{
+          min-height: 165px;
+          max-height: 444.44px;
+        }
+
+        .lazyload {
+          opacity: 0.3;
+          -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=30)";
+          filter: alpha(opacity=30);
+          -webkit-transition: opacity 0.7s ease;
+          -moz-transition: opacity 0.7s ease;
+          -o-transition: opacity 0.7s ease;
+          -ms-transition: opacity 0.7s ease;
+          transition: opacity 0.7s ease;
+        }
+        .lazyload.loading {
+          opacity: 0.5;
+          -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+          filter: alpha(opacity=50);
+        }
+        .lazyload.loaded,
+        .lazyload.fail {
+          opacity: 1;
+          -ms-filter: none;
+          filter: none;
+        }
+      }
+
+    }
+
+    h3 {
+      color: #000;
+      font-size: 16px;
+      overflow: initial;
+      white-space: initial;
+      font-weight: normal;
+      margin: 13px 15px 11px 15px;
+      line-height: 23px;
+      overflow: hidden;
+      -o-text-overflow: ellipsis;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+    }
+  }
+
+  .card-handle {
+    padding: 0 15px 10px 15px;
+    overflow: hidden;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+
+    .comment {
+      -webkit-box-flex: 1;
+      -moz-box-flex: 1;
+      -o-box-flex: 1;
+      box-flex: 1;
+      -webkit-flex: 1;
+      -ms-flex: 1;
+      flex: 1;
+
+      .photo {
+        position: relative;
+        display: block;
+        float: left;
+      }
+
+      .photo img {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        display: inline-block;
+        border: 0
+      }
+
+      /*
+      a {
+          text-decoration: none;
+          -webkit-tap-highlight-color: transparent;
+      }
+      */
+
+      .name {
+        display: block;
+        float: left;
+        margin-left: 10px;
+        line-height: 31px;
+        color: #555;
+        font-weight: 350;
+        width: 115px;
+        height: 26px;
+        overflow: hidden;
+        white-space: nowrap;
+        word-wrap: normal;
+        -o-text-overflow: ellipsis;
+        text-overflow: ellipsis;
+      }
+
+    }
+
+    .like {
+      margin: 3px 0 0 0;
+
+      i {
+        width: 18px;
+        height: 18px;
+        background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAgCAYAAAB6kdqOAAAAAXNSR…/ylH8S8sqpGkb0agKSCbjR+3nF3DYmM5uvVvJnUXLyyz9Srs7x/T5B0AAAAABJRU5ErkJggg==) no-repeat;
+        -webkit-background-size: contain;
+        -moz-background-size: contain;
+        background-size: contain;
+        display: inline-block;
+        vertical-align: middle;
+        margin-top: 2px;
+      }
+    }
+
+  }
+
+}

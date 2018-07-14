@@ -6,6 +6,8 @@ import {APP_CONFIG, IAppConfig} from "../../app.config";
 import {ActivatedRoute, Router} from "@angular/router";
 import {User} from "../../models/User";
 import {Post} from "../../models/Post";
+import {NzModalService} from 'ng-zorro-antd';
+
 
 declare var $: any;
 
@@ -27,9 +29,9 @@ export class ProfileComponent implements OnInit {
     intro: string = 'is a foodie. He likes to know different people from different places.';
 
     private viewCount = 8;
-    private VIEWPERPAGE = 8;
+    VIEWPERPAGE = 8;
     public href: string = "";
-    private owner_id;
+    owner_id: string;
     public postOwner: User;
 
     posts: any;
@@ -37,26 +39,29 @@ export class ProfileComponent implements OnInit {
     urlPrefix: string;
 
 
-
-    private currentUser: User;
+    currentUser: User;
 
     constructor(@Inject(APP_CONFIG) private config: IAppConfig,
                 private route: ActivatedRoute,
                 private profileService: ProfileService,
                 private authService: AuthenticationService,
-                private router: Router) {
+                private router: Router,
+                private modalService: NzModalService) {
         this.urlPrefix = this.config.cloudPrefix;
     }
 
     ngOnInit() {
         this.href = this.router.url;
-       // console.log(this.href.split("/")[3]);
+        // console.log(this.href.split("/")[3]);
         this.owner_id = this.href.split("/")[3];
-        console.log(this.owner_id);
-        this.currentUser = this.authService.getCurrentUser();
+        this.authService.getCurrentUser().subscribe(user => {
+            this.currentUser = user;
+        });
+        //console.log(this.currentUser._id);
         // this.profileImgUrl = "";
-       // console.log(this.currentUser);
-        if(this.owner_id){
+        // console.log(this.currentUser);
+        if (this.owner_id) {
+            this.getPostOwnerInfo();
             this.loadProfilePosts();
         }
     }
@@ -66,33 +71,57 @@ export class ProfileComponent implements OnInit {
             .subscribe(
                 response => {
                     if (response.success) {
-                        //console.log(response.result);
                         this.posts = this.postsView = <Post[]>response.result;
-                        console.log("aasdasdasd", this.posts);
-                        this.postOwner = this.posts[0].owner;
-                        console.log("aasdasdasd", this.postOwner);
-
-                        // this.name = this.currentUser.username;
-
                     }
                 });
     }
 
-
-     deleteProfilePosts(id) {
-        this.profileService.deleteProfilePosts(id)
+    private getPostOwnerInfo() {
+        this.profileService.getPostOwnerInfo(this.owner_id)
             .subscribe(
                 response => {
                     if (response.success) {
-                        this.posts = this.postsView = <Post[]>response.result;
+                        console.log(response.result);
+                        this.postOwner = response.result;
                     }
-                },
-                error => {
-                    // this._notificationsService.warn(
-                    //     'Error',
-                    //     error.message
-                    // );
                 });
+    }
+
+    showDeleteConfirm(id): void {
+        this.modalService.confirm({
+            nzTitle: 'Are you sure delete this task?',
+            nzContent: '<b style="color: red;">Some descriptions</b>',
+            nzOkText: 'Yes',
+            nzOkType: 'danger',
+            nzOnOk: () => this.deleteProfilePosts(id),
+            nzCancelText: 'No',
+            nzOnCancel: () => console.log('Cancel')
+        });
+    }
+
+    deleteProfilePosts(id) {
+        if (this.currentUser._id == this.owner_id) {
+            this.profileService.deleteProfilePosts(id)
+                .subscribe(
+                    response => {
+                        if (response.success) {
+                            this.posts = this.postsView = this.posts.filter(post => post._id !== id);
+                        }
+                    },
+                    error => {
+                        // this._notificationsService.warn(
+                        //     'Error',
+                        //     error.message
+                        // );
+                    });
+        } else {
+            alert("sorry you cannot delete");
+        }
+    }
+
+    goToDetail(id) {
+        const url = '/home/detail/' + id;
+        this.router.navigate([url]);
     }
 
     viewMore() {
@@ -106,7 +135,7 @@ export class ProfileComponent implements OnInit {
 //jq go Top function
 $(function () {
     $(window).scroll(function () {
-        if ($(window).scrollTop() >= 50) {
+        if ($(window).scrollTop() >= 100) {
             $('#btn_top').fadeIn();
         }
         else {
@@ -114,7 +143,7 @@ $(function () {
         }
     });
     $('#btn_top').click(function () {
-        $('html,body').animate({scrollTop: 0}, 500);
+        $('html,body').animate({scrollTop: 0}, 100);
     });
 
 });
