@@ -27,7 +27,6 @@ export class ProfileComponent implements OnInit {
     btnEdit: string = 'Edit Profile';
     name: string;
     intro: string = 'is a foodie. He likes to know different people from different places.';
-
     private viewCount = 8;
     VIEWPERPAGE = 8;
     public href: string = "";

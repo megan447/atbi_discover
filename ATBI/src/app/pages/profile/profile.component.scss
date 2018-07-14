@@ -14,12 +14,21 @@ $size2: 1rem;
   -webkit-border-radius: $radius;
   border-radius: $radius;
 }
-
-h1, h2, h3, h4 {
+@font-face {
+  font-family: 'Montserrat';
+  @import url('https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400');
+}
+h1, h2, h3, h4 ,h5,h6,p,span{
   margin: 0;
   padding: 0;
+  font-weight:400;
 }
-
+h3{ font-family: 'Montserrat', serif;}
+h6,p {
+  font-family: 'Montserrat', serif;
+  font-weight: 300;
+}
+.thin{font-weight: 100;}
 .top_bg {
   width: 100%;
   height: $size2*20;
@@ -31,6 +40,7 @@ h1, h2, h3, h4 {
 }
 
 .jumbotron {
+  font-size: 12px;
   margin: $size2*5 0 0 0;
   //padding: $size2*10 $size1*4 0 $size1*1;
   @include border-radius(0);
@@ -224,26 +234,6 @@ h1, h2, h3, h4 {
   }
 }
 
-//#btn_set {
-//  width: $size2*3;
-//  height: $size2*3;
-//  position: relative;
-//  left: 98%;
-//  background: $darkgray;
-//  background-size: 50%;
-//  color: white;
-//  border: none;
-//  @include border-radius(50%);
-//  img {
-//    display: block;
-//    max-width: 70%;
-//    margin: 0 auto;
-//  }
-//  &:hover {
-//    background: $cornflowerblue;
-//    border: none;
-//  }
-//}
 
 // Small devices (landscape phones, less than 767px)
 @media only screen and (max-width: 767px) {
@@ -256,6 +246,8 @@ h1, h2, h3, h4 {
     }
     .thumbnail {
       margin-top: $size2 !important;
+      margin-left: $size2 !important;
+      margin-right: $size2 !important;
       p {
         text-align: left;
         padding-left: 0;
@@ -280,6 +272,7 @@ h1, h2, h3, h4 {
     height: $size2*36 !important;
   }
   .thumbnail {
+    margin-top: $size2 !important;
     margin-bottom: 0 !important;
     padding-bottom: 0 !important;
   }
@@ -291,7 +284,6 @@ h1, h2, h3, h4 {
     height: $size2*32 !important;
   }
   .thumbnail {
-    margin-top: 0;
     padding-bottom: 0 !important;
   }
 }
@@ -299,7 +291,7 @@ h1, h2, h3, h4 {
 // Medium devices (landscape tablets, 768px and up)
 @media only screen and (min-width: 768px) {
   .thumbnail {
-    margin-top: 0;
+    margin-top: $size2 !important;
   }
   h1, p {
     padding-left: $size2;
@@ -326,14 +318,13 @@ h1, h2, h3, h4 {
 
 .profile-page-wrapper {
   .posts-wrapper {
-    padding-top: 20px;
-    padding-bottom: 20px;
+    padding: 30px 0;
   }
   .profile-page-header {
     position: relative;
     height: 250px;
     @media screen and (max-width: 576px) {
-      height: 380px;
+      height: 400px;
     }
     .header-bg {
       width: 100%;
@@ -368,7 +359,6 @@ h1, h2, h3, h4 {
       }
       img {
         width: 100%;
-        height: 100%;
         border-radius: 50%;
       }
     }
@@ -382,7 +372,7 @@ h1, h2, h3, h4 {
     .first-row {
       display: flex;
       align-items: center;
-      margin-bottom: 30px;
+      margin-top: 30px;
       @media screen and (max-width: 576px) {
         display: block;
       }
@@ -390,8 +380,6 @@ h1, h2, h3, h4 {
 
     .second-row {
       padding-top: 50px;
-      //border-top: 1px solid rgba(255, 255, 255, 0.4);
-
       @media screen and (max-width: 576px) {
         padding-top: 15px;
         .user-info-cols {
@@ -412,7 +400,7 @@ h1, h2, h3, h4 {
       width: $size2*3;
       height: $size2*3;
       position: absolute;
-      right: 50px;
+      right: 135px;
       bottom: -20px;
       background: $darkgray;
       background-size: 50%;
@@ -420,6 +408,12 @@ h1, h2, h3, h4 {
       border: none;
       cursor: pointer;
       @include border-radius(50%);
+      @media screen and (max-width: 980px){
+        right: 70px;
+      }
+      @media screen and (max-width: 1400px){
+        right: 75px;
+      }
       img {
         display: block;
         max-width: 70%;
